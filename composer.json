@@ -1,0 +1,16 @@
+{
+    "name": "lucas/ecommerce",
+    "description": "plataforma ecommerce",
+    "autoload": {
+        "psr-4": {
+            "Lucas\\Ecommerce\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lucas Rabelo",
+            "email": "lucasrabelo186@gmail.com"
+        }
+    ],
+    "require": {}
+}
