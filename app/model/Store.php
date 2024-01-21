@@ -44,5 +44,18 @@ class Store extends Model {
         }
         return $this->conect;//retorna o erro caso haja.
     }
+
+    public function getLogin(array $param) {
+        //verifica  se não algum erro na conexão.
+        if(gettype($this->conect) == "object") {
+            //Execução da query sql
+            $get = $this->conect->prepare("SELECT * FROM loja WHERE email= :email");
+            $get->execute($param);
+            //verifica e trata o resultado da query
+            if($result = $get->fetch()) return $result;//retorna o resultado da query
+            throw new Exception("Email incorreto");//retorna falso caso haja algum erro
+        }
+        return $this->conect;//retorna o erro caso haja.
+    }
 }
 

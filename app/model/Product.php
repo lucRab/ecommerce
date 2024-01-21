@@ -3,7 +3,7 @@ namespace App\model;
 use App\model\Model;
 use Exception;
 
-class Produto extends Model {
+class Product extends Model {
 
     public function create(array $param){
         //verifica  se não algum erro na conexão.

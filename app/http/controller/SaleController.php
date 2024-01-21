@@ -1,9 +1,9 @@
 <?php
 namespace App\http\controller;
 
-require __DIR__."/../request/RequestUser.php";
+require __DIR__."/../request/RequestSale.php";
 
-use App\http\request\Request;
+use App\http\request\RequestSale;
 use App\http\controller\AuthController;
 use App\model\Sale;
 use Exception;
@@ -25,13 +25,19 @@ class SaleController {
      */
     public function store(stdClass $request) {
         try{
-            $param = Request::createRequest($request);
+            $param = RequestSale::createRequest($request);
+            $itens = RequestSale::itensPedido($request->itens);
+           
             $id = $this->repository->create($param);
             if(gettype($id) == "string") throw new Exception($id, "2002");
-            $param += ['iduser' => strval($id)];
-            $token = AuthController::cadastroToken($param);
-
-            return json_encode($token);
+            
+            $quantidade = count($itens);
+            for ($i=0; $i < $quantidade; $i++) { 
+                if(!empty($itens[$i])){
+                    $result = $this->repository->itemPedido(['idproduto' => $itens[$i], 'idvenda' => $id]);
+                    if(gettype($result) == "string") throw new Exception($id, "2002");
+                }
+            }
         }catch(Exception $e){
            
             http_response_code(401);
@@ -44,7 +50,7 @@ class SaleController {
      */
     public function update(stdClass $request) {
         try {
-            $param = Request::updateRequest($request);
+            $param = RequestSale::updateRequest($request);
             $this->repository->update($param);
         }catch(Exception $e) {
             return $e->getMessage();
@@ -55,7 +61,7 @@ class SaleController {
      */
     public function destroy(stdClass $request) {
         try{
-            $param = Request::destroyRequest($request);
+            $param = RequestSale::destroyRequest($request);
             $this->repository->update($param);
         }catch(Exception $e) {
             return $e->getMessage();

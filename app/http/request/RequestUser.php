@@ -4,7 +4,7 @@ use stdClass;
 /**
  * Classe resposavel pelas requisições para o usuario
  */
-class Request {
+class RequestUser {
     /**
      * Métodos responsavel por definir a requisição na criação de um usuário
      *
@@ -15,11 +15,13 @@ class Request {
         if(empty($param->name)) throw new \Exception("O campo nome deve ser preenchido!", 2);
         if(empty($param->password)) throw new \Exception("O campo senha deve ser preenchido!", 2);
         if(empty($param->email)) throw new \Exception("O campo email deve ser preenchido!", 2);
+        if(empty($param->tell)) throw new \Exception("O campo email deve ser preenchido!", 2);
+        if(empty($param->cpf)) throw new \Exception("O campo email deve ser preenchido!", 2);
 
         if(strlen($param->name) < 3) throw new \Exception("O campo nome deve ter pelo menos 3 caracteres!", 2);
         if(strlen($param->password) < 3) throw new \Exception("O campo senha deve ter pelo menos 3 caracteres!", 2);
 
-        $result = ['name'=> $param->name, 'email'=> $param->email, 'password' =>password_hash($param->password, PASSWORD_BCRYPT)];
+        $result = ['name'=> $param->name, 'email'=> $param->email,'tell' => $param->tell, 'cpf' => $param->cpf,'password' =>password_hash($param->password, PASSWORD_BCRYPT)];
         return $result;
     }
     /**

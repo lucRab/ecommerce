@@ -3,7 +3,7 @@ namespace App\http\controller;
 
 require __DIR__."/../request/RequestUser.php";
 
-use App\http\request\Request;
+use App\http\request\RequestUser;
 use App\http\controller\AuthController;
 use App\model\User;
 use Exception;
@@ -36,7 +36,7 @@ class UserController {
      */
     public function store(stdClass $request) {
         try{
-            $param = Request::createRequest($request);
+            $param = RequestUser::createRequest($request);
             $id = $this->repository->create($param);
             if(gettype($id) == "string") throw new Exception($id, "2002");
             $param += ['iduser' => strval($id)];
@@ -55,7 +55,7 @@ class UserController {
      */
     public function update(stdClass $request) {
         try {
-            $param = Request::updateRequest($request);
+            $param = RequestUser::updateRequest($request);
             $this->repository->update($param);
         }catch(Exception $e) {
             return $e->getMessage();
@@ -66,7 +66,7 @@ class UserController {
      */
     public function destroy(stdClass $request) {
         try{
-            $param = Request::destroyRequest($request);
+            $param = RequestUser::destroyRequest($request);
             $this->repository->update($param);
         }catch(Exception $e) {
             return $e->getMessage();
@@ -75,7 +75,7 @@ class UserController {
  
     public function login(stdClass $request) {
         try{
-            $param = Request::loginRequest($request);
+            $param = RequestUser::loginRequest($request);
             $get = $this->repository->getLogin(['email' => $param['email']]);
             if(!password_verify($param['password'], $get['password'])) throw new Exception ('Senha incorreta');
             $token = AuthController::cadastroToken($get);
