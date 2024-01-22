@@ -39,11 +39,11 @@ $produto = new ProductController();
 
 $venda = new SaleController();
 
-$cvenda = new stdClass;
-$cvenda->user = 1;
-$cvenda->tipoPagamento = 1;
-$cvenda->dataVenda = "2024-01-01";
-$cvenda->valorTotal = 50.00;
-$cvenda->itens = [1];
+// $cvenda = new stdClass;
+// $cvenda->user = 1;
+// $cvenda->tipoPagamento = 1;
+// $cvenda->dataVenda = "2024-01-01";
+// $cvenda->valorTotal = 50.00;
+// $cvenda->itens = [1];
 
-$venda->store($cvenda);
+// $venda->store($cvenda);
