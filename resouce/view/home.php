@@ -29,15 +29,59 @@
 <div class="column"></div>
 <div class="column"></div>
 
-<div class="container is-max-desktop">
+<div class="container is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd m-5">
     <div class="columns">
         <div class="column is-three-fifths">
-            <figure class="image is-200x200">
-                <img src="https://bulma.io/images/placeholders/128x128.png">
-            </figure>
+          <figure class="image is-5by3">
+            <img src="accets/img/campo.jpg">
+          </figure>
         </div>
-        <div class="column">Auto</div>
-        <div class="column">Auto</div>
+        <div class="column text-center">
+          <div class="card m-5">
+            <figure class="image-bg is-3by2">
+              <img src="accets/img/Frey.jpg">
+            </figure>
+            ssasdasdaaaadsdz
+          </div>
+          <div class="card m-5">
+            <figure class="image-bg is-3by2">
+              <img src="accets/img/Frey.jpg">
+            </figure>
+            ssasdasdaaaadsd
+          </div>
+        </div>
+        <div class="column text-center">
+          <div class="card m-5">
+            <figure class="image-bg is-3by2">
+              <img src="accets/img/Frey.jpg">
+            </figure>
+            ssasdasdaaaadsd
+          </div>
+          <div class="card m-5">
+            <figure class="image-bg is-3by2">
+              <img src="accets/img/Frey.jpg">
+            </figure>
+            ssasdasdaaaadsd
+          </div>
+        </div>
     </div>
+</div>
+<div class="has-background-grey-lighter ">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <div class="box"> asdda</div>
+        <div class="box"> asdda</div>
+      </div>
+      <div class="column">
+        <div class="box"> asdda</div>
+        <div class="box"> asdda</div>
+      </div>
+      <div class="column">
+        <div class="box"> asdda</div>
+        <div class="box"> asdda</div>
+      </div>
+    </div>
+  </div>
 </div>
 
