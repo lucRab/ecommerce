@@ -22,4 +22,8 @@ class LoadPages {
     public function CadastroPage() {
         return Plates::view('cadastro');
     }
+
+    public function HomePage() {
+        return Plates::view('home');
+    }
 }

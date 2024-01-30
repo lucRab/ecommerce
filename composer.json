@@ -3,7 +3,8 @@
     "description": "plataforma ecommerce",
     "autoload": {
         "psr-4": {
-            "Lucas\\Ecommerce\\": "src/"
+            "src\\": "src/",
+            "App\\": "app/"
         }
     },
     "authors": [
@@ -12,5 +13,7 @@
             "email": "lucasrabelo186@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "league/plates": "^3.5"
+    }
 }

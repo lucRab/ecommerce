@@ -5,8 +5,7 @@
 <div class="column"></div>
 <div class="columns is-mobile is-centered">
     <div class="column is-narrow is-two-fifths">
-        <div class="card">
-            <div class="card-content ">
+            <div class="box">
                 <h2 class="is-size-2 has-text-centered">Login</h2>
                 <form action="" method="post" class="form-cadastro" id="form1">
                     <div class="field">
@@ -32,7 +31,6 @@
                 </p>
                 <div id="alert" name="alert" class="has-text-danger has-text-centered"></div>
             </div>
-        </div>
     </div>
 </div>
 
