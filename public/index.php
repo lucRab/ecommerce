@@ -17,6 +17,7 @@ use src\Route;
  Route::route('/store', 'POST', 'StoreController', 'store');
  Route::route('/store/update', 'POST', 'StoreController', 'update');
  Route::route('/store/delete', 'POST', 'StoreController', 'delete');
+ Route::route('/store/cadastro', 'GET', 'LoadPages', 'CadastroLojaPage');
 
  Route::route('/sale', 'POST', 'SaleController', 'store');
  Route::route('/sale/update', 'POST', 'SaleController', 'update');
@@ -26,7 +27,9 @@ use src\Route;
 
  Route::route('/product', 'POST', 'ProductController', 'store');
  Route::route('/product/update', 'POST', 'productController', 'update');
- Route::route('/product/delete', 'POST', 'productController', 'delete');
+ Route::route('/product/delete', 'POST', 'productcleController', 'delete');
+ Route::route('/product', 'GET', 'LoadPages', 'ProdutoPage');
+
 
 
 try {
