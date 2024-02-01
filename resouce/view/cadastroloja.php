@@ -27,7 +27,7 @@
                     </div>
                     <div class="field">
                         <div class="control has-text-centered">
-                            <button type="submit" class="button is-black is-outlined">Enviar</button>
+                            <button type="submit" class="button is-primary-light is-outlined">Enviar</button>
                         </div>
                     </div>
                 </form>

@@ -14,20 +14,32 @@
                         </div>
                     </div>
                     <div class="field">
+                        <label class="label">CPF</label>
+                        <div class="control">
+                            <input type="text" class="input" name="cpf" placeholder="digite o seu CPF">
+                        </div>
+                    </div>
+                    <div class="field">
                         <label class="label">Email</label>
                         <div class="control">
                             <input type="text" class="input" name="email" placeholder="digite o seu email">
                         </div>
                     </div>
                     <div class="field">
-                        <label class="label">Senha</label>
+                        <label class="label">Telefone</label>
                         <div class="control">
+                            <input type="text" class="input" name="tell" placeholder="digite o seu telefone">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Senha</label>
+                        <div class="control ">
                             <input type="password" class="input" name="password" placeholder="digite o sua senha">
                         </div>
                     </div>
                     <div class="field">
                         <div class="control has-text-centered">
-                            <button type="submit" class="button is-black is-outlined">Enviar</button>
+                            <button type="submit" class="button is-dark is-outlined">Enviar</button>
                         </div>
                     </div>
                 </form>

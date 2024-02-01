@@ -15,8 +15,8 @@ class RequestUser {
         if(empty($param->name)) throw new \Exception("O campo nome deve ser preenchido!", 2);
         if(empty($param->password)) throw new \Exception("O campo senha deve ser preenchido!", 2);
         if(empty($param->email)) throw new \Exception("O campo email deve ser preenchido!", 2);
-        if(empty($param->tell)) throw new \Exception("O campo email deve ser preenchido!", 2);
-        if(empty($param->cpf)) throw new \Exception("O campo email deve ser preenchido!", 2);
+        if(empty($param->tell)) throw new \Exception("O campo telefone deve ser preenchido!", 2);
+        if(empty($param->cpf)) throw new \Exception("O campo cpf deve ser preenchido!", 2);
 
         if(strlen($param->name) < 3) throw new \Exception("O campo nome deve ter pelo menos 3 caracteres!", 2);
         if(strlen($param->password) < 3) throw new \Exception("O campo senha deve ter pelo menos 3 caracteres!", 2);

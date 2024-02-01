@@ -1,34 +1,4 @@
 <?php $this->layout('master')?>
-<nav class="navbar has-background-primary" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <figure class="image">
-        <img src="accets/img/logo.png" width="112" height="28">
-      </figure>
-        ECOMMERCE
-    </a>
-
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a href="http://localhost:8000/cadastro" class="button  is-success">
-            <strong>Sign up</strong>
-          </a>
-          <a href="http://localhost:8000/login" class="button is-light">
-            Log in
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-
 <div class="column"></div>
 <div class="container is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd m-5">
     <div class="columns">
