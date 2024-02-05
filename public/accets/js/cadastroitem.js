@@ -1,16 +1,11 @@
 // Seleciona o formulário
 let form = document.getElementById('form1');
-let destino = '/login';
-if(!form) {
-  form = document.getElementById('form2');
-  destino = '/cadastro';
-}
+let destino = '/product';
 // Manipula o evento de envio do formulário
 form.addEventListener('submit', (event) => {
   event.preventDefault(); // Evita o envio padrão do formulário
   
-  const alert = document.querySelector('#alert');
-  // Obtém os dados do formulário
+  const alert = document.querySelector('#alert');7
   const formData = new FormData(form);
   // Faz a requisição POST usando fetch()
   fetch(destino, {
@@ -25,16 +20,18 @@ form.addEventListener('submit', (event) => {
       });
     }
     return response.json();
-  }
-  ) // Converte a resposta em JSON
+  })
   .then(data => {
     // Manipula os dados recebidos
     localStorage.setItem('token', data);
-    window.location.replace('http://localhost:8000');
+    window.location.replace('http://localhost:8000/product');
   })
   .catch(error => {
     console.log(error.message);
     // Trate o erro de acordo com a sua lógica
   });
 });
+
+
+
 

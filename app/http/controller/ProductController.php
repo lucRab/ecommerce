@@ -6,6 +6,7 @@ require __DIR__."/../request/RequestProduct.php";
 use App\http\request\RequestProduct;
 use App\http\controller\AuthController;
 use App\model\Product;
+use src\File;
 use Exception;
 use stdClass;
 /**
@@ -23,15 +24,17 @@ class ProductController {
     /**
      * Método responsavel pela criação do usuário
      */
-    public function store(stdClass $request) {
+    public function store($request) {
         try{
+            $request->foto = $_FILES['foto'];
             $param = RequestProduct::createRequest($request);
+            if($param['foto'] != null) {
+               $dirFoto =  File::file($param['foto'],'products');
+               $param['foto'] = $dirFoto;
+            }
             $id = $this->repository->create($param);
             if(gettype($id) == "string") throw new Exception($id, "2002");
-            $param += ['iduser' => strval($id)];
-            $token = AuthController::cadastroToken($param);
-
-            return json_encode($token);
+            return json_encode(true);
         }catch(Exception $e){
            
             http_response_code(401);

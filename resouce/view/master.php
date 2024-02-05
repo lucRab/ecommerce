@@ -13,7 +13,7 @@
     <div class="navbar-brand">
       <a class="navbar-item" href="http://localhost:8000">
         <figure class="image">
-          <img src="accets/img/logo.png" width="112" height="28">
+          <img src="http://localhost:8000/accets/img/logo.png" width="112" height="28">
         </figure>
           ECOMMERCE
       </a>
@@ -53,20 +53,19 @@
         </div>
         <div class="column">
           <p>Deseja cadastrar sua loja ?</p>
-          <a href="http://localhost:8000/cadastro" class="button  is-success">
+          <a href="http://localhost:8000/store/cadastro" class="button  is-success">
             <strong>Loja</strong>
           </a>
         </div>
       </div>
     </div>
   </div>
-
   <button class="modal-close is-large" aria-label="close"></button>
 </div>
   
   
   <?=$this->section('content')?>
-  <script src="accets/js/button.js"/script>
+  <script src="http://localhost:8000/accets/js/button.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@ let form = document.getElementById('form1');
 let destino = '/login';
 if(!form) {
   form = document.getElementById('form2');
-  destino = '/cadastro';
+  destino = '/store';
 }
 // Manipula o evento de envio do formulário
 form.addEventListener('submit', (event) => {

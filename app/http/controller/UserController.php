@@ -73,17 +73,4 @@ class UserController {
         }
     }
  
-    public function login(stdClass $request) {
-        try{
-            $param = RequestUser::loginRequest($request);
-            $get = $this->repository->getLogin(['email' => $param['email']]);
-            if(!password_verify($param['password'], $get['password'])) throw new Exception ('Senha incorreta');
-            $token = AuthController::cadastroToken($get);
-
-            return json_encode($token);
-        }catch(Exception $e) {
-            http_response_code(401);
-            return json_encode($e->getMessage());
-        }
-    }
 }

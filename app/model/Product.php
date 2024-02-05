@@ -9,7 +9,7 @@ class Product extends Model {
         //verifica  se não algum erro na conexão.
         if(gettype($this->conect) == "object") {
             //perarando o sql a ser executado
-            $insert = $this->conect->prepare("INSERT INTO produto(idloja, name, descricao, preco, quantidade, disponivel) VALUES(:idloja, :name, :descricao, :preco, :quantidade, :disponivel)");
+            $insert = $this->conect->prepare("INSERT INTO produto(idloja, name, descricao, preco, quantidade, disponivel, foto) VALUES(:idloja, :name, :descricao, :preco, :quantidade, :disponivel, :foto)");
             //executa o sql e verifica se deu aldo de errado
             
             if($insert->execute($param)) {

@@ -12,7 +12,7 @@ use src\Route;
  Route::route('/cadastro', 'POST', 'UserController', 'store');
 
  Route::route('/login', 'GET', 'LoadPages', 'LoginPage');
- Route::route('/login', 'POST', 'UserController', 'login');
+ Route::route('/login', 'POST', 'EndpoitController', 'login');
 
  Route::route('/store', 'POST', 'StoreController', 'store');
  Route::route('/store/update', 'POST', 'StoreController', 'update');
@@ -29,6 +29,7 @@ use src\Route;
  Route::route('/product/update', 'POST', 'productController', 'update');
  Route::route('/product/delete', 'POST', 'productcleController', 'delete');
  Route::route('/product', 'GET', 'LoadPages', 'ProdutoPage');
+ Route::route('/product/cadastro', 'GET','LoadPages', 'CadastroItemPage');
 
 
 

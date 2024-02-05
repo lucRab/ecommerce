@@ -34,4 +34,8 @@ class LoadPages {
     public function ProdutoPage() {
         return Plates::view('produto');
     }
+
+    public function CadastroItemPage() {
+        return Plates::view('cadastroitem');
+    }
 }

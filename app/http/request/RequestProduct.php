@@ -13,13 +13,14 @@ class RequestProduct {
      */
     static function createRequest(stdClass $param) {
 
-        if(empty($param->loja)) throw new \Exception("Ops algo deu errado!", 3);
+       // if(empty($param->loja)) throw new \Exception("Ops algo deu errado!", 3);
         if(empty($param->name)) throw new \Exception("Esse campo deve ser preenchido!", 2);
         if(empty($param->preco)) throw new \Exception("Esse campo deve ser preenchido!", 2);
         if(empty($param->quantidade)) throw new \Exception("Esse campo deve ser preenchido!", 2);
 
         if(empty($param->descricao)) $param->descricao = null;
-        $result = ['idloja'=> $param->loja, 'name'=> $param->name, 'descricao' => $param->descricao, 'preco' => $param->preco, 'quantidade' => $param->quantidade, 'disponivel' => true];
+        if(empty($param->foto)) $param->foto = null;
+        $result = ['idloja'=> 2, 'name'=> $param->name, 'descricao' => $param->descricao, 'preco' => intval($param->preco), 'quantidade' => $param->quantidade, 'foto' => $param->foto, 'disponivel' => true];
         return $result;
     }
     /**

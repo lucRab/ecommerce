@@ -5,24 +5,36 @@
     <div class="column is-narrow is-two-fifths">
         <div class="card">
             <div class="card-content ">
-                <h2 class="is-size-2 has-text-centered">Cadastro</h2>
+                <h2 class="is-size-2 has-text-centered">Cadastro de Loja</h2>
                 <form action="/cadastro" method="post" class="form-cadastro" id="form2">
                     <div class="field">
                         <label class="label">Nome</label>
                         <div class="control">
-                            <input type="text" class="input" name="name" placeholder="digite o seu nome">
+                            <input type="text" class="input" name="name" placeholder="digite o nome da sua loja">
                         </div>
                     </div>
                     <div class="field">
                         <label class="label">Email</label>
                         <div class="control">
-                            <input type="text" class="input" name="email" placeholder="digite o seu email">
+                            <input type="text" class="input" name="email" placeholder="digite o email da sua loja">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Telefone</label>
+                        <div class="control">
+                            <input type="text" class="input" name="tell" placeholder="digite o contato da sua loja">
                         </div>
                     </div>
                     <div class="field">
                         <label class="label">Senha</label>
                         <div class="control">
                             <input type="password" class="input" name="password" placeholder="digite o sua senha">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Descrição</label>
+                        <div class="control">
+                          <textarea class="textarea" name="descricao" placeholder="Textarea"></textarea>
                         </div>
                     </div>
                     <div class="field">
@@ -40,4 +52,4 @@
     </div>
 </div>
 
-<script type="module" src="accets/js/auth.js"></script>
+<script type="module" src="http://localhost:8000/accets/js/authloja.js"></script>
