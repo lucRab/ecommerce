@@ -1,3 +1,4 @@
+const btn = document.getElementById('btn');
 document.addEventListener('DOMContentLoaded', () => {
     // Functions to open and close a modal
     function openModal($el) {
@@ -39,4 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
         closeAllModals();
       }
     });
+  });
+  btn.addEventListener('click', () => {
+    localStorage.removeItem('token');
+
+    fetch('/logout',{
+      method: 'POST'
+    });
+    location.reload();
   });

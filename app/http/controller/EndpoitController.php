@@ -37,4 +37,8 @@ class EndpoitController {
             return json_encode($e->getMessage());
         }
     }
+    public function logout() {
+        setcookie("token", "", time()-3600,);
+        var_dump($_COOKIE);
+    }
 }

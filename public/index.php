@@ -13,24 +13,23 @@ use src\Route;
 
  Route::route('/login', 'GET', 'LoadPages', 'LoginPage');
  Route::route('/login', 'POST', 'EndpoitController', 'login');
+ Route::route('/logout', 'POST', 'EndpoitController', 'logout');
 
  Route::route('/store', 'POST', 'StoreController', 'store');
  Route::route('/store/update', 'POST', 'StoreController', 'update');
  Route::route('/store/delete', 'POST', 'StoreController', 'delete');
+ Route::route('/store','GET','LoadPages', 'LojaPage');
  Route::route('/store/cadastro', 'GET', 'LoadPages', 'CadastroLojaPage');
 
  Route::route('/sale', 'POST', 'SaleController', 'store');
  Route::route('/sale/update', 'POST', 'SaleController', 'update');
  Route::route('/sale/delete', 'POST', 'SaleController', 'delete');
 
-
-
  Route::route('/product', 'POST', 'ProductController', 'store');
  Route::route('/product/update', 'POST', 'productController', 'update');
  Route::route('/product/delete', 'POST', 'productcleController', 'delete');
  Route::route('/product', 'GET', 'LoadPages', 'ProdutoPage');
  Route::route('/product/cadastro', 'GET','LoadPages', 'CadastroItemPage');
-
 
 
 try {

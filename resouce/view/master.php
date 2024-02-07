@@ -25,7 +25,8 @@
       </a>
     </div>
       <div class="navbar-end">
-        <div class="navbar-item">
+        <?php if(!isset($_COOKIE['token'])){?>
+        <div class="navbar-item" id="div">
           <div class="buttons">
             <button class="js-modal-trigger button is-primary" data-target="modal-js-example">
               Sign up
@@ -35,6 +36,19 @@
             </a>
           </div>
         </div>
+        <?php } else {?>
+        <div class="navbar-item">
+          <figure class="image is-32x32 is-center mr-2">
+            <img class="is-rounded" src="accets/img/perfil.jpg">
+          </figure>
+          <a href="http://localhost:8000/login" class="button is-light">
+            Carrinho
+          </a>
+          <button class="button is-primary" id="btn">
+            Sing out
+          </button>
+        </div>
+        <?php } ?>
       </div>
     </div>
   </nav>

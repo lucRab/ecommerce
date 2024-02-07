@@ -14,6 +14,7 @@ class AuthController {
 
         
         $encode = JWT::encode($payload,strval(getenv('KEY')),'HS256');
+        setcookie('token', $encode, time() + 1000,);
         return $encode;
     }
 
