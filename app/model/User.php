@@ -104,4 +104,33 @@ class User extends Model{
         }
         return $this->conect;//retorna o erro caso haja.
     }
+    public function addCart(array $param) {
+        //verifica  se não algum erro na conexão.
+        if(gettype($this->conect) == "object") {
+            //perarando o sql a ser executado
+            $insert = $this->conect->prepare("INSERT INTO carrinho(idusuario, idproduto) VALUES(:idusuario, :idproduto)");
+            //executa o sql e verifica se deu aldo de errado
+            
+            if($insert->execute($param)) {
+                $id = $this->conect->lastInsertId();
+                return intval($id);
+            } 
+            
+            throw new Exception("[ATENÇÃO]Erro de execução", 30);
+        }
+        return $this->conect;//retorna o erro caso haja.
+    }
+    
+    public function remove(array $param) {
+        
+        //verifica  se não algum erro na conexão.
+        if(gettype($this->conect) == "object") {
+            //perarando o sql a ser executado
+            $insert = $this->conect->prepare("DELETE FROM carrinho WHERE idcarrinho= :idcarrinho");
+            //executa o sql e verifica se deu aldo de errado
+            if($insert->execute($param)) return true;
+            throw new Exception("[ATENÇÃO]Erro de execução", 30);
+        }
+        return $this->conect;//retorna o erro caso haja.
+    }
 }

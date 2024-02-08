@@ -24,6 +24,7 @@ use src\Route;
  Route::route('/sale', 'POST', 'SaleController', 'store');
  Route::route('/sale/update', 'POST', 'SaleController', 'update');
  Route::route('/sale/delete', 'POST', 'SaleController', 'delete');
+ Route::route('/sale', 'GET', 'LoadPages', 'Salepage');
 
  Route::route('/product', 'POST', 'ProductController', 'store');
  Route::route('/product/update', 'POST', 'productController', 'update');

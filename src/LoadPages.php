@@ -52,4 +52,8 @@ class LoadPages {
     public function LojaPage() {
         return Plates::view('loja');
     }
+
+    public function SalePage() {
+        return Plates::view('compra');
+    }
 }

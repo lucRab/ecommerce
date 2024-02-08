@@ -72,5 +72,12 @@ class UserController {
             return $e->getMessage();
         }
     }
- 
+    
+    public function addProductCart() {
+
+    }
+
+    public function removeProductCart() {
+        
+    }
 }

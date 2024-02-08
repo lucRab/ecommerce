@@ -45,7 +45,7 @@
             Carrinho
           </a>
           <button class="button is-primary" id="btn">
-            Sing out
+            Log out
           </button>
         </div>
         <?php } ?>

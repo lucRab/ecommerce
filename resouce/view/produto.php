@@ -28,7 +28,7 @@
                                
                             </div>
                             <div class="card is-shadowless">
-                                <button class="button is-primary mx-6 my-3">Comprar</button>
+                                <a href="http://localhost:8000/sale" class="button is-primary mx-6 my-3">Comprar</a>
                                 <button class="button is-light mx-6 my-3">Carrinho</button>
                             </div>
                         </div>   
