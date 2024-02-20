@@ -9,7 +9,7 @@ class Store extends Model {
         //verifica  se não algum erro na conexão.
         if(gettype($this->conect) == "object") {
             //perarando o sql a ser executado
-            $insert = $this->conect->prepare("INSERT INTO loja(name, email, password, tell, descricao) VALUES(:name, :email, :password, :tell, :descricao)");
+            $insert = $this->conect->prepare("INSERT INTO loja(name, email, password, tell, descricao, slug) VALUES(:name, :email, :password, :tell, :descricao, :slug)");
             //executa o sql e verifica se deu aldo de errado
             
             if($insert->execute($param)) {
@@ -58,7 +58,7 @@ class Store extends Model {
         return $this->conect;//retorna o erro caso haja.
     }
     public function getLogin(array $param) {
-        //verifica  se não algum erro na conexão.
+        //verifica se não algum erro na conexão.
         if(gettype($this->conect) == "object") {
             //Execução da query sql
             $get = $this->conect->prepare("SELECT * FROM loja WHERE email= :email");
@@ -68,6 +68,16 @@ class Store extends Model {
             return false;//retorna falso caso haja algum erro
         }
         return $this->conect;//retorna o erro caso haja.
+    }
+    public function getByslug(array $slug) {
+        //verifica se não algum erro na conexão
+        if(gettype($this->conect) == "object") {
+            //Execução do query sql
+            $get = $this->conect->prepare("SELECT * FROM loja WHERE slug= :slug");
+            $get->execute($slug);
+            $result = $get->fetch();
+            return $result;
+        }
     }
 }
 

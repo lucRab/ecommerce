@@ -20,16 +20,18 @@ class EndpoitController {
      }
     public function login(stdClass $request) {
         try{
+            session_start();
             if($this->user->getLogin(['email' =>$request->email])){
                 $param = RequestUser::loginRequest($request);
                 $get = $this->user->Login(['email' => $param['email']]);
+                if(gettype($get) != "array") throw new Exception($get);
                 if(!password_verify($param['password'], $get['password'])) throw new Exception ('Senha incorreta');
-                $token = AuthController::cadastroToken($get);
+                $token = AuthController::userToken($get);
             }else if($this->store->getLogin(['email' =>$request->email])) {
                 $param = RequestStore::loginRequest($request);
                 $get = $this->store->Login(['email' => $param['email']]);
                 if(!password_verify($param['password'], $get['password'])) throw new Exception ('Senha incorreta');
-                $token = AuthController::cadastroToken($get);
+                $token = AuthController::storeToken($get);
             }
             return json_encode($token);
         }catch(Exception $e) {
@@ -39,6 +41,6 @@ class EndpoitController {
     }
     public function logout() {
         setcookie("token", "", time()-3600,);
-        var_dump($_COOKIE);
+        session_destroy();
     }
 }

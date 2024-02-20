@@ -73,11 +73,23 @@ class UserController {
         }
     }
     
-    public function addProductCart() {
-
+    public function addProductCart(stdClass $request) {
+        try {
+            $this->repository->addCart(['idusuario' => $request->iduser, 'idproduto' => $request->idproduct]);
+        }catch(Exception $e) {
+            return $e->getMessage();
+        }
     }
 
-    public function removeProductCart() {
-        
+    public function removeProductCart(stdClass $request) {
+        try {
+            $this->repository->remove(['idcarrinho' => $request->idcart]);
+        }catch(Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function teste($teste, $name = null) {
+       // var_dump($teste, $name, "aaaaa");
     }
 }

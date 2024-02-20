@@ -21,7 +21,7 @@ form.addEventListener('submit', (event) => {
     if (response.status === 401) {
       return response.json().then(data => {
         alert.innerText = data;
-        throw new Error('Unauthorized');
+        throw new Error(response.message);
       });
     }
     return response.json();

@@ -28,12 +28,11 @@ class StoreController {
             $param = RequestStore::createRequest($request);
             $id = $this->repository->create($param);
             if(gettype($id) == "string") throw new Exception($id, "2002");
-            $param += ['iduser' => strval($id)];
-            $token = AuthController::cadastroToken($param);
+            $param += ['idloja' => strval($id)];
+            $token = AuthController::storeToken($param);
 
             return json_encode($token);
         }catch(Exception $e){
-           
             http_response_code(401);
             if($e->getCode() == "23000") return json_encode("Esse email já estar registrado");
             return json_encode($e->getMessage());
@@ -49,6 +48,12 @@ class StoreController {
         }catch(Exception $e) {
             return $e->getMessage();
         }
+    }
+
+    public function show(stdClass $request, $store) {
+        $get = $this->repository->getByslug(['slug' => $store]);
+        //$get = $store;
+        var_dump($get);
     }
     /**
      * Método resposavel pela deleção

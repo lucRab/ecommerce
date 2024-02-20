@@ -9,6 +9,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
 </head>
 <body>
+  <?php
+    use App\http\controller\AuthController;
+    if(isset($_COOKIE['token'])) {
+      if(gettype(AuthController::decodedToken($_COOKIE['token'])) == 'string') {
+        setcookie("token", "", time()-3600,);
+        header('Location: http://localhost:8000/');
+      }
+    }
+  ?>
   <nav class="navbar has-background-primary" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="http://localhost:8000">
@@ -41,6 +50,7 @@
           <figure class="image is-32x32 is-center mr-2">
             <img class="is-rounded" src="accets/img/perfil.jpg">
           </figure>
+          <?php echo $_SESSION['name'] ?>
           <a href="http://localhost:8000/login" class="button is-light">
             Carrinho
           </a>

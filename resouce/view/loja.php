@@ -1,4 +1,7 @@
-<?php $this->layout('master')?>
+<?php $this->layout('master');
+use App\http\controller\AuthController;
+    $t = AuthController::decodedToken($_COOKIE['token']);
+?>
 <div class="container is-max-desktop">
     <div class="column">
         <div class="box" style="background-image: url('accets/img/banner.png'); background-position: center; ">
@@ -10,7 +13,7 @@
 </div>
 <div class="column">
     <div class="title text-center">
-            Loja Gamer
+            <?php echo $_SESSION['name']?>
         </div>
     </div>
 </div>
@@ -57,9 +60,7 @@
     </div>
     <div class="container">
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.
-            Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+            <?php echo $_SESSION['descricao'] ?>
         </p>
     </div>
     <div class="title text-center mt-6">
@@ -73,7 +74,7 @@
                         Email
                     </h2>
                     <p>
-                        geyej68490@namewok.com
+                       <?php echo $_SESSION['email'] ?>
                     </p>
                 </div>
             </div>
@@ -83,7 +84,7 @@
                         Telefone
                     </h2>
                     <p>
-                        (71) 99129-0387
+                        <?php echo $_SESSION['tell'] ?>
                     </p>
                 </div>
             </div>

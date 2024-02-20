@@ -52,8 +52,16 @@ class LoadPages {
     public function LojaPage() {
         return Plates::view('loja');
     }
-
+    /**
+     * Método para registrar a view compra
+     */
     public function SalePage() {
         return Plates::view('compra');
+    }
+    /**
+     * Método para registrar a view teste
+     */
+    public function TestePage() {
+        return Plates::view('teste');
     }
 }

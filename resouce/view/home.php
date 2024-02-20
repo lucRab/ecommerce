@@ -1,10 +1,15 @@
-<?php $this->layout('master')?>
+<?php $this->layout('master');
+  $url = "login";
+  if(isset($_COOKIE['token'])) {
+    $url = "product";
+  }
+?>
 <div class="column"></div>
 <div class="container is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd m-5">
     <div class="columns">
 
         <div class="column is-half">
-          <a href="http://localhost:8000/product">
+          <a href="http://localhost:8000/<?php echo $url?>">
           <figure class="image">
             <img src="accets/img/fone.jpg">
           </figure>
@@ -18,7 +23,7 @@
             <div class="column text-center is-shadowless">
               <div class="box m-5">
                 <div class="card-image m-2">
-                <a href="http://localhost:8000/product">
+                <a href="http://localhost:8000/<?php echo $url?>">
                   <figure class="image is-96x96 ml-5" >
                     <img src="accets/img/fone1.jpg">
                   </figure>
