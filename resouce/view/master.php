@@ -48,9 +48,11 @@
         <?php } else {?>
         <div class="navbar-item">
           <figure class="image is-32x32 is-center mr-2">
-            <img class="is-rounded" src="accets/img/perfil.jpg">
+            <img class="is-rounded" src="http://localhost:8000/accets/img/perfil.jpg">
           </figure>
-          <?php echo $_SESSION['name'] ?>
+          <div class="mr-2">
+            <?php echo $_SESSION['name'] ?>
+          </div>
           <a href="http://localhost:8000/login" class="button is-light">
             Carrinho
           </a>

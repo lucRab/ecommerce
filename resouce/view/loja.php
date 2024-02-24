@@ -1,66 +1,61 @@
 <?php $this->layout('master');
 use App\http\controller\AuthController;
     $t = AuthController::decodedToken($_COOKIE['token']);
+    $q = sizeof($this->data['produtos'])
 ?>
 <div class="container is-max-desktop">
     <div class="column">
-        <div class="box" style="background-image: url('accets/img/banner.png'); background-position: center; ">
+        <div class="box" style="background-image: url('../<?php echo $this->data['imagem']?>'); background-position: center; ">
             <figure class="image is-128x128 is-center">
-                <img class="is-rounded" src="accets/img/perfil.jpg">
+                <img class="is-rounded" src="../accets/img/perfil.jpg">
             </figure>
         </div>
     </div>
 </div>
 <div class="column">
     <div class="title text-center">
-            <?php echo $_SESSION['name']?>
+            <?php echo $this->data['name']?>
         </div>
     </div>
+    <?php if($this->data['idloja'] == $_SESSION['id']) {?>
+        <a>Editar</a>
+    <?php } ?>
 </div>
 
 <div class="column has-background-grey-lighter" >
-    Produtos: 39
-    <div class="columns mt-6">
-        <div class="column">    
-            <div class="box" >
-                <div class="card-image m-2">
-                    <figure class="image is-128x128 ml-6">
-                      <img src="accets/img/celular.png">
-                    </figure>
-                </div>
-                <div class="card-boddy">
-                    <div class="title is-size-5">
-                        Celular Gamer 1.0
+    Produtos: <?php echo $q ?>
+    <div class="columns is-desktop mt-6">
+        <?php for ($i=0; $i < $q; $i++) { ?>
+            <?php if($this->data['produtos'][$i]['disponivel'] == 1) {?>
+                <div class="column is-one-quarter">    
+                    <div class="box is-4" >
+                        <div class="card-image m-2">
+                            <figure class="image is-128x128 ml-6">
+                              <img src="../<?php echo $this->data['produtos'][$i]['foto']?>">
+                            </figure>
+                        </div>
+                        <div class="card-boddy">
+                            <div class="title is-size-5">
+                                <?php echo $this->data['produtos'][$i]['name']?>
+                            </div>
+                            R$ <?php echo $this->data['produtos'][$i]['preco']?>
+                        </div>
                     </div>
-                    R$ 89,99
                 </div>
-            </div>
-        </div>
-        <div class="column">  
-            <div class="box" >
-            </div>
-        </div>
-        <div class="column"> 
-            <div class="box" >
-            </div>
-        </div>
-        <div class="column">
-            <div class="box" >
-            </div>
-        </div>
-        <div class="column">
-            <div class="box">
-            </div>
-        </div>
+            <?php  }?>
+        <?php  }?>
     </div>
+    <?php if($this->data['idloja'] == $_SESSION['id']) {?>
+        <a>Add Produto</a>
+    <?php } ?>
 </div>
 <div class="column" >
     <div class="title text-center">
         Sobre Nós
     </div>
-    <div class="container">
+    <div class="container text-center">
         <p>
-            <?php echo $_SESSION['descricao'] ?>
+            <?php echo $this->data['descricao'] ?>
         </p>
     </div>
     <div class="title text-center mt-6">
@@ -74,7 +69,7 @@ use App\http\controller\AuthController;
                         Email
                     </h2>
                     <p>
-                       <?php echo $_SESSION['email'] ?>
+                       <?php echo $this->data['email'] ?>
                     </p>
                 </div>
             </div>
@@ -84,7 +79,7 @@ use App\http\controller\AuthController;
                         Telefone
                     </h2>
                     <p>
-                        <?php echo $_SESSION['tell'] ?>
+                        <?php echo $this->data['tell'] ?>
                     </p>
                 </div>
             </div>

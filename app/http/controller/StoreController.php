@@ -6,6 +6,8 @@ require __DIR__."/../request/RequestStore.php";
 use App\http\request\RequestStore;
 use App\http\controller\AuthController;
 use App\model\Store;
+use App\model\Product;
+use src\Plates;
 use Exception;
 use stdClass;
 /**
@@ -14,11 +16,13 @@ use stdClass;
 class StoreController {
     
     protected Store $repository;
+    protected Product $repo;
    /**
     * Método construtor da classe
     */
     public function __construct(){
         $this->repository = new Store();
+        $this->repo = new Product();
     }
     /**
      * Método responsavel pela criação
@@ -52,8 +56,9 @@ class StoreController {
 
     public function show(stdClass $request, $store) {
         $get = $this->repository->getByslug(['slug' => $store]);
-        //$get = $store;
-        var_dump($get);
+        $product = $this->repo->getByloja(['id' => $get['idloja']]);
+        $get['produtos'] = $product; 
+        Plates::view('loja', $get);
     }
     /**
      * Método resposavel pela deleção
@@ -74,7 +79,7 @@ class StoreController {
             $param = RequestStore::loginRequest($request);
             $get = $this->repository->getLogin(['email' => $param['email']]);
             if(!password_verify($param['password'], $get['password'])) throw new Exception ('Senha incorreta');
-            $token = AuthController::cadastroToken($get);
+            $token = AuthController::storeToken($get);
 
             return json_encode($token);
         }catch(Exception $e) {

@@ -45,4 +45,18 @@ class Product extends Model {
         }
         return $this->conect;//retorna o erro caso haja.
     }
+
+    public function getByloja(array $param) {
+        //verifica  se não algum erro na conexão.
+        if(gettype($this->conect) == "object") {
+            $get = $this->conect->prepare("SELECT p.name, p.preco, p.foto, p.disponivel FROM produto p
+            INNER JOIN loja l ON l.idloja = p.idloja
+            WHERE l.idloja = :id GROUP BY p.name");
+            $get->execute($param);
+            $result = $get->fetchAll();
+
+            return $result;
+        }   
+        return $this->conect;//retorna o erro caso haja.
+    }
 }
