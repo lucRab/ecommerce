@@ -14,6 +14,7 @@
     if(isset($_COOKIE['token'])) {
       if(gettype(AuthController::decodedToken($_COOKIE['token'])) == 'string') {
         setcookie("token", "", time()-3600,);
+        session_destroy();
         header('Location: http://localhost:8000/');
       }
     }
@@ -47,12 +48,14 @@
         </div>
         <?php } else {?>
         <div class="navbar-item">
-          <figure class="image is-32x32 is-center mr-2">
-            <img class="is-rounded" src="http://localhost:8000/accets/img/perfil.jpg">
-          </figure>
-          <div class="mr-2">
-            <?php echo $_SESSION['name'] ?>
-          </div>
+          <a href="http://localhost:8000/store/<?=$_SESSION['slug']?>">
+            <figure class="image is-32x32 is-center mr-2">
+              <img class="is-rounded" src="http://localhost:8000/accets/img/perfil.jpg">
+            </figure>
+          </a>
+            <div class="mr-2">
+              <?= $_SESSION['name'] ?>
+            </div>
           <a href="http://localhost:8000/login" class="button is-light">
             Carrinho
           </a>
@@ -88,8 +91,7 @@
   </div>
   <button class="modal-close is-large" aria-label="close"></button>
 </div>
-  
-  
+   
   <?=$this->section('content')?>
   <script src="http://localhost:8000/accets/js/button.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

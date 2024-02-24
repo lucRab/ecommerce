@@ -2,8 +2,10 @@
 namespace App\model;
 use App\model\Model;
 use Exception;
+use src\radical\get;
 
 class Store extends Model {
+    protected $table = "loja";
 
     public function create(array $param) {
         //verifica  se não algum erro na conexão.

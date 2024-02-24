@@ -32,9 +32,7 @@ class AuthController {
             'exp' => time() + 1000,
             'iat' => time(),
             'name' => $data['name'],
-            'email' => $data['email'],
-            'telefone' => $data['tell'],
-            'descricao' => $data['descricao'],
+            'slug' => $data['slug'],
             'id' => $data['idloja'],
         ];
 
@@ -52,6 +50,7 @@ class AuthController {
             if (empty($_SESSION)) {
                 $_SESSION['id'] = $decoded->id;
                 $_SESSION['name'] = $decoded->name;
+                $_SESSION['slug'] = $decoded->slug;
             }
             return true;
         }catch(Exception $e) {

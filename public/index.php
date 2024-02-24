@@ -22,7 +22,7 @@ use src\Route;
  Route::route('/store', 'POST', 'StoreController:store');
  Route::route('/store/update', 'POST', 'StoreController:pdate');
  Route::route('/store/delete', 'POST', 'StoreController:delete');
- Route::route('/store','GET','LoadPages:LojaPage');
+ Route::route('/store','GET','StoreController:index');
  Route::route('/store/{any}', 'GET', 'StoreController:show');
  Route::route('/store/cadastro', 'GET', 'LoadPages:CadastroLojaPage');
 
@@ -36,7 +36,7 @@ use src\Route;
  Route::route('/product/delete', 'POST', 'ProductController:delete');
  Route::route('/product', 'GET', 'LoadPages:ProdutoPage');
  Route::route('/product/{any}', 'GET', 'ProductController:show');
- Route::route('/product/cadastro', 'GET','LoadPages:CadastroItemPage');
+ Route::route('/product/cadastro', 'GET','ProductController:create');
  try {
     $method = $_SERVER['REQUEST_METHOD'];
     

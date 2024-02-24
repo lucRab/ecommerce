@@ -8,6 +8,7 @@ use App\http\controller\AuthController;
 use App\model\Product;
 use src\File;
 use Exception;
+use src\Plates;
 use stdClass;
 /**
  * Classe responsavel pelo controle do usuário
@@ -32,6 +33,7 @@ class ProductController {
                $dirFoto =  File::file($param['foto'],'products');
                $param['foto'] = $dirFoto;
             }
+            $param['idloja'] = intval($_REQUEST['id']);
             $id = $this->repository->create($param);
             if(gettype($id) == "string") throw new Exception($id, "2002");
             return json_encode(true);
@@ -41,6 +43,10 @@ class ProductController {
             if($e->getCode() == "23000") return json_encode("Esse email já estar registrado");
             return json_encode($e->getMessage());
         }
+    }
+
+    public function create() {
+        return Plates::view('form/cadastroitem');
     }
     /**
      * Método responsavel pela atualização dos dados do usuário

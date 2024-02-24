@@ -24,7 +24,7 @@ form.addEventListener('submit', (event) => {
   .then(data => {
     // Manipula os dados recebidos
     localStorage.setItem('token', data);
-    window.location.replace('http://localhost:8000/product');
+    window.location.replace('http://localhost:8000');
   })
   .catch(error => {
     console.log(error.message);

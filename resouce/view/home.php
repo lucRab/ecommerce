@@ -91,7 +91,9 @@
     <div class="columns">
 
       <div class="column">
-        <div class="box">Lojas</div>
+        <div class="box">
+          <a href="http://localhost:8000/store">Lojas</a>
+        </div>
       </div>
 
       <div class="column">

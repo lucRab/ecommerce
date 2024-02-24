@@ -44,7 +44,6 @@ class LoadPages {
      * Método para registrar a view de cadastro de item
      */
     public function CadastroItemPage() {
-        return Plates::view('form/cadastroitem');
     }
     /**
      * Método para registar a view loja 

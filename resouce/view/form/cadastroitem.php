@@ -1,5 +1,14 @@
-<?php $this->layout('master')?>
-
+<?php 
+  use App\http\controller\AuthController;
+  $this->layout('master');
+  if(isset($_COOKIE['token'])) {
+    if(gettype(AuthController::decodedToken($_COOKIE['token'])) == 'string') {
+      setcookie("token", "", time()-3600,);
+      session_destroy();
+      header('Location: http://localhost:8000/');
+    }
+  }
+?>
 <div class="container">
     <div class="column">
         <div class="box">
@@ -7,6 +16,7 @@
                 Formulario de cadastro de produto
             </div>
             <form action="" method="post" enctype="multipart/form-data" class="form-cadastro" id="form1">
+              <input type="hidden" name="id" value="<?=$_SESSION['id']?>">
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
                       <label class="label">Nome</label>

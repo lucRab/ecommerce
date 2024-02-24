@@ -20,7 +20,7 @@ class RequestProduct {
 
         if(empty($param->descricao)) $param->descricao = null;
         if(empty($param->foto)) $param->foto = null;
-        $result = ['idloja'=> 2, 'name'=> $param->name, 'descricao' => $param->descricao, 'preco' => intval($param->preco), 'quantidade' => $param->quantidade, 'foto' => $param->foto, 'disponivel' => true];
+        $result = ['name'=> $param->name, 'descricao' => $param->descricao, 'preco' => intval($param->preco), 'quantidade' => $param->quantidade, 'foto' => $param->foto, 'disponivel' => true];
         return $result;
     }
     /**

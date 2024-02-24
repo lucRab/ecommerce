@@ -46,7 +46,7 @@ use App\http\controller\AuthController;
         <?php  }?>
     </div>
     <?php if($this->data['idloja'] == $_SESSION['id']) {?>
-        <a>Add Produto</a>
+        <a href="http://localhost:8000/product/cadastro">Add Produto</a>
     <?php } ?>
 </div>
 <div class="column" >

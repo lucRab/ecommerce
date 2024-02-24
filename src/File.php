@@ -12,7 +12,7 @@ class File {
             mkdir(self::$dir.$past);
             move_uploaded_file($file["tmp_name"],self::$dir.$past.'/'.$newName);
         }
-        $result = self::$dir.$past.$newName;
+        $result = self::$dir.$past.'/'.$newName;
         return $result;
     }
     

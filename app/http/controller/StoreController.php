@@ -24,6 +24,13 @@ class StoreController {
         $this->repository = new Store();
         $this->repo = new Product();
     }
+    
+    public function index() {
+        $this->repository->get->values("idloja, name, slug, imagem");
+        $get = $this->repository->get();
+        Plates::view('lojas', $get);
+    }
+
     /**
      * Método responsavel pela criação
      */
