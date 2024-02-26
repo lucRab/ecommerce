@@ -18,12 +18,14 @@ class AuthController {
             'exp' => time() + 1000,
             'iat' => time(),
             'name' => $data['name'],
+            'slug' => $data['slug'],
             'id' => $data['iduser'],
+            'type' => 0,
         ];
 
         
         $encode = JWT::encode($payload, $_ENV['KEY'],'HS256');
-        setcookie('token', $encode, time() + 10000,);
+        setcookie('token', $encode, time() + 1000000,);
         return $encode;
     }
      static public function storeToken(array $data) {
@@ -34,11 +36,12 @@ class AuthController {
             'name' => $data['name'],
             'slug' => $data['slug'],
             'id' => $data['idloja'],
+            'type' => 1,
         ];
 
         
         $encode = JWT::encode($payload,$_ENV['KEY'],'HS256');
-        setcookie('token', $encode, time() + 10000,);
+        setcookie('token', $encode, time() + 1000000,);
         return $encode; 
     }
     static public function decodedToken($token) {
@@ -51,6 +54,7 @@ class AuthController {
                 $_SESSION['id'] = $decoded->id;
                 $_SESSION['name'] = $decoded->name;
                 $_SESSION['slug'] = $decoded->slug;
+                $_SESSION['type'] = $decoded->type;
             }
             return true;
         }catch(Exception $e) {

@@ -4,12 +4,13 @@ use App\model\Model;
 use Exception;
 
 class Product extends Model {
-
+    protected $table = "produto";
+    
     public function create(array $param){
         //verifica  se não algum erro na conexão.
         if(gettype($this->conect) == "object") {
             //perarando o sql a ser executado
-            $insert = $this->conect->prepare("INSERT INTO produto(idloja, name, descricao, preco, quantidade, disponivel, foto) VALUES(:idloja, :name, :descricao, :preco, :quantidade, :disponivel, :foto)");
+            $insert = $this->conect->prepare("INSERT INTO produto(idloja, name, descricao, preco, quantidade, disponivel, foto, slug) VALUES(:idloja, :name, :descricao, :preco, :quantidade, :disponivel, :foto, :slug)");
             //executa o sql e verifica se deu aldo de errado
             
             if($insert->execute($param)) {

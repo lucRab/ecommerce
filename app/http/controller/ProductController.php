@@ -22,6 +22,12 @@ class ProductController {
     public function __construct(){
         $this->repository = new Product();
     }
+
+    public function index () {
+        $this->repository->get->all();
+        $allproduct = $this->repository->get();
+        return Plates::view('home', $allproduct);
+    }
     /**
      * Método responsavel pela criação do usuário
      */
@@ -44,7 +50,12 @@ class ProductController {
             return json_encode($e->getMessage());
         }
     }
-
+    public function  show(stdClass $request, $product) {
+        $this->repository->get->values('name, descricao, foto, preco, quantidade, idloja');
+        $this->repository->get->where('slug','= ',$product);
+        $get = $this->repository->get();
+        return Plates::view('show/produto', $get);
+    }
     public function create() {
         return Plates::view('form/cadastroitem');
     }

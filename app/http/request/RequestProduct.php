@@ -1,5 +1,6 @@
 <?php
 namespace App\http\request;
+use src\Slug;
 use stdClass;
 /**
  * Classe resposavel pelas requisições para o usuario
@@ -20,7 +21,8 @@ class RequestProduct {
 
         if(empty($param->descricao)) $param->descricao = null;
         if(empty($param->foto)) $param->foto = null;
-        $result = ['name'=> $param->name, 'descricao' => $param->descricao, 'preco' => intval($param->preco), 'quantidade' => $param->quantidade, 'foto' => $param->foto, 'disponivel' => true];
+        $explode = explode(' ', $param->name);
+        $result = ['name'=> $param->name, 'descricao' => $param->descricao, 'preco' => intval($param->preco), 'quantidade' => $param->quantidade, 'foto' => $param->foto, 'slug' => Slug::created($explode[0]),'disponivel' => true];
         return $result;
     }
     /**

@@ -23,12 +23,6 @@ class LoadPages {
         return Plates::view('form/cadastro');
     }
     /**
-     * Método para registrar a view home
-     */
-    public function HomePage() {
-        return Plates::view('home');
-    }
-    /**
      * Método para registrar a view de cadastro de loja
      */
     public function CadastroLojaPage() {
@@ -39,17 +33,6 @@ class LoadPages {
      */
     public function ProdutoPage() {
         return Plates::view('produto');
-    }
-    /**
-     * Método para registrar a view de cadastro de item
-     */
-    public function CadastroItemPage() {
-    }
-    /**
-     * Método para registar a view loja 
-     */    
-    public function LojaPage() {
-        return Plates::view('loja');
     }
     /**
      * Método para registrar a view compra

@@ -27,7 +27,11 @@ abstract class Model {
         if(gettype($this->conect) == "object") {
            $quary = "SELECT ".$this->get->values." FROM ".$this->table.$this->get->param;
            $get = $this->conect->prepare($quary);
-           $get->execute();
+           if($this->get->p_value != null) {
+                $get->execute($this->get->p_value);
+           }else {
+               $get->execute();
+           }
            $result = $get->fetchAll();
            return $result;
         }

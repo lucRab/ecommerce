@@ -7,16 +7,20 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"> 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://localhost:8000/accets/css/style.css">
 </head>
 <body>
   <?php
     use App\http\controller\AuthController;
+    $type = null;
     if(isset($_COOKIE['token'])) {
       if(gettype(AuthController::decodedToken($_COOKIE['token'])) == 'string') {
         setcookie("token", "", time()-3600,);
         session_destroy();
         header('Location: http://localhost:8000/');
       }
+      if($_SESSION['type'] == 0) $type = "user";
+      if($_SESSION['type'] == 1) $type = "store";
     }
   ?>
   <nav class="navbar has-background-primary" role="navigation" aria-label="main navigation">
@@ -48,7 +52,7 @@
         </div>
         <?php } else {?>
         <div class="navbar-item">
-          <a href="http://localhost:8000/store/<?=$_SESSION['slug']?>">
+          <a href="http://localhost:8000/<?= $type?>/<?=$_SESSION['slug']?>">
             <figure class="image is-32x32 is-center mr-2">
               <img class="is-rounded" src="http://localhost:8000/accets/img/perfil.jpg">
             </figure>

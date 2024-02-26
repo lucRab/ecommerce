@@ -2,14 +2,15 @@
 require_once "../vendor/autoload.php";
 require "../src/Route.php";
 use src\Route;
- Route::route('/', 'GET', 'LoadPages:HomePage');
+ Route::route('/', 'GET', 'ProductController:index');
+
  Route::route('/teste', 'GET', 'LoadPages:Testepage');
- Route::route('/teste/{numeric}','GET','LoadPages:LojaPage');
- Route::route('/teste/{numeric}/name/{alpha}','GET','LoadPages:LojaPage');
- Route::route('/teste/{alpha}','GET','LoadPages:LojaPage');
- Route::route('/teste/{any}','GET','LoadPages:LojaPage');
 
  Route::route('/user', 'GET', 'LoadPages:UserPage');
+ Route::route('/user/{any}', 'GET', 'UserController:show');
+ Route::route('/user/edit/{any}', 'GET', 'UserController:edit');
+ Route::route('/user/edit', 'POST', 'UserController:update');
+
  Route::route('/user', 'POST', 'UserController:index');
 
  Route::route('/cadastro', 'GET', 'LoadPages:CadastroPage');

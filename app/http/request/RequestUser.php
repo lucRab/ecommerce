@@ -32,10 +32,7 @@ class RequestUser {
      */
     static function updateRequest(stdClass $param) {
 
-        if(strlen($param->name) < 3) throw new \Exception("O campo nome deve ter pelo menos 3 caracteres!", 2);
-        if(strlen($param->password) < 3) throw new \Exception("O campo senha deve ter pelo menos 3 caracteres!", 2);
-
-        $result = [ 'name' => $param->name, 'email' => $param->email, 'password' => $param->password, 'id' => $param->id];
+        $result = [ 'name' => $param->name, 'email' => $param->email, 'tell' => $param->tell, 'cpf' => $param->cpf];
         return $result;
     }
     /**

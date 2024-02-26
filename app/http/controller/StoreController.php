@@ -24,13 +24,14 @@ class StoreController {
         $this->repository = new Store();
         $this->repo = new Product();
     }
-    
+    /**
+     * Método responsavel pela exibição de todas as lojas
+     */
     public function index() {
         $this->repository->get->values("idloja, name, slug, imagem");
         $get = $this->repository->get();
         Plates::view('lojas', $get);
     }
-
     /**
      * Método responsavel pela criação
      */
@@ -60,12 +61,18 @@ class StoreController {
             return $e->getMessage();
         }
     }
-
+    /**
+     * Método resposavel pela exibição de uma loja especifica
+     */
     public function show(stdClass $request, $store) {
         $get = $this->repository->getByslug(['slug' => $store]);
-        $product = $this->repo->getByloja(['id' => $get['idloja']]);
+
+        $this->repo->get->values('name, preco, foto, disponivel, slug');
+        $this->repo->get->where('idloja', '=', $get['idloja']);
+        $product= $this->repo->get();
+
         $get['produtos'] = $product; 
-        Plates::view('loja', $get);
+        Plates::view('show/loja', $get);
     }
     /**
      * Método resposavel pela deleção

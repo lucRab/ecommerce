@@ -7,6 +7,8 @@ use Exception;
  * @version ${2:2.0.0
  */
 class User extends Model{
+    protected $table = "usuario";
+
     /**
      * Método para criar usuario
      * 
@@ -39,7 +41,7 @@ class User extends Model{
          //verifica  se não algum erro na conexão.
         if(gettype($this->conect) == "object") {
             //perarando o sql a ser executado
-            $insert = $this->conect->prepare("UPDATE usuario SET name= :name, email= :email, password= :password, tell= :tell WHERE iduser= :id");
+            $insert = $this->conect->prepare("UPDATE usuario SET name= :name, email= :email, cpf= :cpf, tell= :tell WHERE iduser= :id");
             //executa o sql e verifica se deu aldo de errado
             if($insert->execute($param)) return true;
             throw new Exception("[ATENÇÃO]Erro de execução", 30);
