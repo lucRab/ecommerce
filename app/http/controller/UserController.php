@@ -40,7 +40,7 @@ class UserController {
             $id = $this->repository->create($param);
             if(gettype($id) == "string") throw new Exception($id, "2002");
             $param += ['iduser' => strval($id)];
-            $token = AuthController::cadastroToken($param);
+            $token = AuthController::userToken($param);
 
             return json_encode($token);
         }catch(Exception $e){
@@ -50,7 +50,13 @@ class UserController {
             return json_encode($e->getMessage());
         }
     }
-
+    public function showcart (stdClass $request, $sale) {
+        $this->repository->get->where('slug','=', $sale);
+        $this->repository->get->column('iduser');
+        $get = $this->repository->get();
+        var_dump($get);
+        //return Plates::view('show/user', $get);
+     }
     public function show (stdClass $request, $user) {
        $this->repository->get->where('slug','=', $user);
        $get = $this->repository->get();
@@ -70,7 +76,7 @@ class UserController {
     }
 
     public function edit (stdClass $request, $edit) {
-        $this->repository->get->values('name, email, tell, cpf, iduser');
+        $this->repository->get->column('name, email, tell, cpf, iduser');
         $this->repository->get->where('slug', '=', $edit);
         $get = $this->repository->get();
         return Plates::view('form/user', $get);

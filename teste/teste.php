@@ -47,3 +47,7 @@ $venda = new SaleController();
 // $cvenda->itens = [1];
 
 // $venda->store($cvenda);
+
+$nome = "Lucas";
+
+echo 'Ola $nome!';

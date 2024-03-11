@@ -128,4 +128,34 @@ class Route {
             return $params;
         }
     }
+
+    public static function start() {
+        try {
+            $method = $_SERVER['REQUEST_METHOD'];
+            
+            $routeFoud = self::verificate($method);
+            $params = null;
+            if(isset($routeFoud))$params = self::routeParam($routeFoud);
+            
+            $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+            $routes = self::allroutes($method);
+        
+            if(!isset(self::$routes[$method])){
+                throw new Exception("A metodo não exite");
+            }
+            
+            $key  = self::getKeyRoute($uri, $method, $routeFoud);
+            if(!array_key_exists($key, $routes)){
+                throw new Exception("A rota não exite"); 
+            }
+            if(isset($params)) {
+                $controller = fn() => self::load(self::$routes[$method][$key]['action'][0],self::$routes[$method][$key]['action'][1], $method, $params);
+            }else{
+                $controller = fn() => self::load(self::$routes[$method][$key]['action'][0],self::$routes[$method][$key]['action'][1], $method);
+            }
+            $controller();
+         }catch(Exception $e) {
+             echo $e->getMessage();
+         }
+    }
 }

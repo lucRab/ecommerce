@@ -11,7 +11,7 @@ class Slug
         return $slug;
     }
     static function random_str_generator ($len_of_gen_str){
-        $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-";
+        $chars = "abcdefghijklmnopqrstuvwxyz0123456789-";
         $var_size = strlen($chars);
         for( $x = 0; $x < $len_of_gen_str; $x++ ) {
             $random_str= $chars[ rand( 0, $var_size - 1 ) ];    

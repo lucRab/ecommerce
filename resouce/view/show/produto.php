@@ -1,4 +1,11 @@
-<?php $this->layout('master')?>
+<?php 
+use App\http\controller\AuthController;
+$this->layout('master');
+if(gettype(AuthController::decodedToken($_COOKIE['token'])) == 'string') {
+    setcookie("token", "", time()-3600,);
+    session_destroy();
+    header('Location: http://localhost:8000/');
+  }?>
 <div class="column"></div>
 <div class="column"></div>
 <div class="container">
@@ -29,7 +36,9 @@
                             </div>
                             <div class="card is-shadowless">
                                 <a href="http://localhost:8000/sale" class="button is-primary mx-6 my-3">Comprar</a>
-                                <button class="button is-light mx-6 my-3">Carrinho</button>
+                                <form action="http://localhost:8000/sale/<?= $_SESSION['id']?>/product/<?= $this->data[0]['slug']?>" method="POST">
+                                    <button class="button is-light mx-6 my-3">ADD Carrinho</button>
+                                </form>
                             </div>
                         </div> 
                         <div class="title is-size-6">

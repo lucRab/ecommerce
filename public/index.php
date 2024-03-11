@@ -10,8 +10,8 @@ use src\Route;
  Route::route('/user/{any}', 'GET', 'UserController:show');
  Route::route('/user/edit/{any}', 'GET', 'UserController:edit');
  Route::route('/user/edit', 'POST', 'UserController:update');
-
  Route::route('/user', 'POST', 'UserController:index');
+ Route::route('sale/user/{any}/product/{any}', 'POST', 'SaleController:removeItemCart');
 
  Route::route('/cadastro', 'GET', 'LoadPages:CadastroPage');
  Route::route('/cadastro', 'POST', 'UserController:store');
@@ -30,7 +30,9 @@ use src\Route;
  Route::route('/sale', 'POST', 'SaleController:store');
  Route::route('/sale/update', 'POST', 'SaleController:update');
  Route::route('/sale/delete', 'POST', 'SaleController:delete');
- Route::route('/sale', 'GET', 'LoadPages:Salepage');
+ Route::route('/sale/{any}/product/{any}', 'POST', 'SaleController:addproduct');
+ Route::route('/sale', 'GET', 'SaleController:getcart');
+ Route::route('/sale/{any}', 'GET', 'SaleController:showcart');
 
  Route::route('/product', 'POST', 'ProductController:store');
  Route::route('/product/update', 'POST', 'ProductController:update');
@@ -38,29 +40,5 @@ use src\Route;
  Route::route('/product', 'GET', 'LoadPages:ProdutoPage');
  Route::route('/product/{any}', 'GET', 'ProductController:show');
  Route::route('/product/cadastro', 'GET','ProductController:create');
- try {
-    $method = $_SERVER['REQUEST_METHOD'];
-    
-    $routeFoud = Route::verificate($method);
-    $params = null;
-    if(isset($routeFoud))$params = Route::routeParam($routeFoud);
-    
-    $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-    $routes = Route::allroutes($method);
-
-    if(!isset(Route::$routes[$method])){
-        throw new Exception("A metodo não exite");
-    }
-    $key  = Route::getKeyRoute($uri, $method, $routeFoud);
-    if(!array_key_exists($key, $routes)){
-        throw new Exception("A rota não exite"); 
-    }
-    if(isset($params)) {
-        $controller = fn() => Route::load(Route::$routes[$method][$key]['action'][0],Route::$routes[$method][$key]['action'][1], $method, $params);
-    }else{
-        $controller = fn() => Route::load(Route::$routes[$method][$key]['action'][0],Route::$routes[$method][$key]['action'][1], $method);
-    }
-    $controller();
- }catch(Exception $e) {
-     echo $e->getMessage();
- }
+ 
+ Route::start();

@@ -2,6 +2,7 @@
 namespace App\model;
 use App\model\Model;
 use Exception;
+use PDO;
 
 class Sale extends Model {
     
@@ -49,12 +50,41 @@ class Sale extends Model {
          //verifica  se não algum erro na conexão.
         if(gettype($this->conect) == "object") {
             //perarando o sql a ser executado
-            $insert = $this->conect->prepare("INSERT INTO item_pedido(idproduto, idvenda) VALUE (:idproduto, :idvenda)");
+            $get = $this->conect->prepare("INSERT INTO item_pedido(idproduto, idusuario) VALUE (:idproduto, :idusuario)");
             //executa o sql e verifica se deu aldo de errado
-            if($insert->execute($param)) {
-                $id = $this->conect->lastInsertId();
-                return intval($id);
+            if($get->execute($param)) {
+                $result = $get->fetchAll();
+                return $result;
             }
+            throw new Exception("[ATENÇÃO]Erro de execução", 30);
+        }
+        return $this->conect;//retorna o erro caso haja.
+    }
+
+    public function getCart(array $param) {
+         //verifica  se não algum erro na conexão.
+         if(gettype($this->conect) == "object") {
+            //perarando o sql a ser executado
+            $get = $this->conect->prepare("SELECT p.name, p.foto, p.quantidade, p.preco, p.slug FROM produto p
+            JOIN item_pedido ip ON ip.idproduto = p.idproduto WHERE ip.idusuario = :iduser");
+            //executa o sql e verifica se deu aldo de errado
+            $get->bindValue( ":iduser", $param['iduser'], PDO::PARAM_INT );
+            if($get->execute()) {
+                $result = $get->fetchAll();
+                return $result;
+            }
+            throw new Exception("[ATENÇÃO]Erro de execução", 30);
+        }
+        return $this->conect;//retorna o erro caso haja.
+    }
+
+    public function deletecartitem($param) {
+        //verifica  se não algum erro na conexão.
+        if(gettype($this->conect) == "object") {
+            //perarando o sql a ser executado
+            $insert = $this->conect->prepare("DELETE FROM item_pedido WHERE idusuario= :id AND idproduto = :idproduto");
+            //executa o sql e verifica se deu (aldo de errado
+            if($insert->execute($param)) return true;
             throw new Exception("[ATENÇÃO]Erro de execução", 30);
         }
         return $this->conect;//retorna o erro caso haja.

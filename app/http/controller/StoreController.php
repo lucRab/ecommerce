@@ -28,7 +28,7 @@ class StoreController {
      * Método responsavel pela exibição de todas as lojas
      */
     public function index() {
-        $this->repository->get->values("idloja, name, slug, imagem");
+        $this->repository->get->column("idloja, name, slug, imagem");
         $get = $this->repository->get();
         Plates::view('lojas', $get);
     }
@@ -67,7 +67,7 @@ class StoreController {
     public function show(stdClass $request, $store) {
         $get = $this->repository->getByslug(['slug' => $store]);
 
-        $this->repo->get->values('name, preco, foto, disponivel, slug');
+        $this->repo->get->column('name, preco, foto, disponivel, slug');
         $this->repo->get->where('idloja', '=', $get['idloja']);
         $product= $this->repo->get();
 

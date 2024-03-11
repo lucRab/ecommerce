@@ -1,4 +1,16 @@
-<?php $this->layout('master')?>
+<?php
+use App\http\controller\AuthController;
+if(isset($_COOKIE['token'])) {
+    if(gettype(AuthController::decodedToken($_COOKIE['token'])) == 'string') {
+      setcookie("token", "", time()-3600,);
+      session_destroy();
+      header('Location: http://localhost:8000/');
+    }
+  }
+$this->layout('master');
+$tamanho = sizeof($this->data);
+$total = 0;
+?>
 
 <div class="container mt-6">
     <div class="column">
@@ -29,29 +41,35 @@
                     </div>
                 </div>
             </nav>
-            <div class="columns">
-                <div class="column is-two-thirds">     
-                    <figure class="image is-96x96 ml-5">
-                      <img src="accets/img/celular.png">
-                    </figure>
-                    CELULAR GAMER 1.0
-                </div>
-                <div class="column">
-                    <div class="columns">
-                        <div class="column is-3">
-                           <input type="number" class="input is-small">
+            <div id="obj">
+                <?php for ($i=0; $i < $tamanho; $i++) { ?>
+                    <form action="" class="<?= $_SESSION['slug']?>" id="<?= $this->data[$i]['slug']?>">
+                        <div class="columns">
+                            <div class="column is-two-thirds">     
+                                <figure class="image is-96x96 ml-5">
+                                    <img src="../<?= $this->data[$i]['foto']?>">
+                                </figure>
+                                <?= $this->data[$i]['name']?>
+                            </div>
+                            <div class="column">
+                                <div class="columns">
+                                    <div class="column is-3">
+                                    <input type="number" min="1" id="<?=$this->data[$i]['preco']?>" name="<?=$i?>" class="input is-small" value="1">
+                                    </div>
+                                    <div class="column preco">
+                                        <?= $this->data[$i]['preco']?>
+                                    </div>
+                                    <div class="column total">
+                                        <?= $this->data[$i]['preco']?>
+                                    </div>
+                                </div>
+                                <button class="button is-white" id="btn">
+                                    Remover
+                                </button>
+                            </div>
                         </div>
-                        <div class="column">
-                            R$ 30,00
-                        </div>
-                        <div class="column">
-                            R$ 90,00
-                        </div>
-                    </div>
-                    <button class="button is-white" id="btn">
-                      Remover
-                    </button>
-                </div>
+                    </form>
+                <?php $total = $total + (float) $this->data[$i]['preco']; }?>
             </div>
         </div>
     </div>
@@ -65,10 +83,21 @@
                 </div>
                 <div class="column">
                     <div class="title is-size-4">
-                        VALOR TOTAL: 90,00
+                        Valor Total:    
+                    </div>
+                    <div class="is-size-4">
+                        <div class="columns">
+                            <div class="column is-one-fifth">
+                                R$
+                            </div>
+                            <div class="column" id="valortotal">
+                                <?= number_format($total, 2)?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script type="module" src="../accets/js/sale.js"></script>

@@ -3,7 +3,7 @@
         'name' => 'lucas/ecommerce',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '20aba9851d12292a6f59c0fa5d26847135eb8c76',
+        'reference' => 'ca284b8d41eb3de460010971a76114ea7fd5ef59',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -40,7 +40,7 @@
         'lucas/ecommerce' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '20aba9851d12292a6f59c0fa5d26847135eb8c76',
+            'reference' => 'ca284b8d41eb3de460010971a76114ea7fd5ef59',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

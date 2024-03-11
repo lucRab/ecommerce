@@ -51,7 +51,7 @@ class ProductController {
         }
     }
     public function  show(stdClass $request, $product) {
-        $this->repository->get->values('name, descricao, foto, preco, quantidade, idloja');
+        $this->repository->get->column('name, descricao, foto, preco, quantidade, idloja, slug');
         $this->repository->get->where('slug','= ',$product);
         $get = $this->repository->get();
         return Plates::view('show/produto', $get);

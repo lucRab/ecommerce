@@ -18,6 +18,9 @@ form.addEventListener('submit', (event) => {
     body: formData
   })
   .then(response => {
+    if (response.ok) {
+      window.location.replace('http://localhost:8000');
+    }
     if (response.status === 401) {
       return response.json().then(data => {
         alert.innerText = data;
@@ -25,16 +28,6 @@ form.addEventListener('submit', (event) => {
       });
     }
     return response.json();
-  }
-  ) // Converte a resposta em JSON
-  .then(data => {
-    // Manipula os dados recebidos
-    localStorage.setItem('token', data);
-    window.location.replace('http://localhost:8000');
-  })
-  .catch(error => {
-    console.log(error.message);
-    // Trate o erro de acordo com a sua lógica
   });
 });
 

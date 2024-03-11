@@ -60,7 +60,7 @@
             <div class="mr-2">
               <?= $_SESSION['name'] ?>
             </div>
-          <a href="http://localhost:8000/login" class="button is-light">
+          <a href="http://localhost:8000/sale/<?= $_SESSION['slug']?>" class="button is-light">
             Carrinho
           </a>
           <button class="button is-primary" id="btn">

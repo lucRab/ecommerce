@@ -2,7 +2,6 @@
 namespace App\model;
 use App\model\Model;
 use Exception;
-use src\radical\get;
 
 class Store extends Model {
     protected $table = "loja";
@@ -81,5 +80,6 @@ class Store extends Model {
             return $result;
         }
     }
+    
 }
 

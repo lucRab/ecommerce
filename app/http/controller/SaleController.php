@@ -5,8 +5,13 @@ require __DIR__."/../request/RequestSale.php";
 
 use App\http\request\RequestSale;
 use App\http\controller\AuthController;
+use App\model\Product;
 use App\model\Sale;
+use App\model\User;
 use Exception;
+use PDO;
+use src\Conexao;
+use src\Plates;
 use stdClass;
 /**
  * Classe responsavel pelo controle do usuário
@@ -14,11 +19,16 @@ use stdClass;
 class SaleController {
     
     protected Sale $repository;
+    protected Product $product;
+
+    protected User $user;
    /**
     * Método construtor da classe
     */
     public function __construct(){
         $this->repository = new Sale();
+        $this->product = new Product();
+        $this->user = new User();
     }
     /**
      * Método responsavel pela criação do usuário
@@ -67,5 +77,42 @@ class SaleController {
             return $e->getMessage();
         }
     }
- 
+    
+    public function addproduct(stdClass $param, $sale, $product) {
+        try{
+            $this->product->get->column('disponivel, idproduto');
+            $this->product->get->where('slug', '=', $product);
+            $get = $this->product->get();
+            if($get[0]['disponivel'] == 1) {
+                $this->repository->itemPedido(['idproduto' => $get[0]['idproduto'],'idusuario' => intval($sale)]);
+                header('Location: http://localhost:8000/sale');
+            }
+        }catch(Exception $e) {
+            return $e->getMessage();
+        }
+    }
+    public function showcart (stdClass $request, $sale) {
+        $this->user->get->where('slug','=', $sale);
+        $this->user->get->column('iduser');
+        $get = $this->user->get();
+       
+        $cart = $this->repository->getCart($get[0]);
+        return Plates::view('compra', $cart);
+    }
+    public function removeItemCart ($request, $user, $product) {
+        try {
+            $this->user->get->where('slug','=', $user);
+            $this->user->get->column('iduser');
+            $iduser = $this->user->get();
+            
+            $this->product->get->where('slug','=', $product);
+            $this->product->get->column('idproduto');
+            $idproduct = $this->product->get();
+            
+            $this->repository->deletecartitem(['id' => $iduser[0]['iduser'], 'idproduto' => $idproduct[0]['idproduto']]);
+        }catch(Exception $e) {
+            http_response_code(401);
+            return $e->getMessage();
+        }
+    }
 }
