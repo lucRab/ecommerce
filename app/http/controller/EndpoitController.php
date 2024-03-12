@@ -33,16 +33,14 @@ class EndpoitController {
                 if(!password_verify($param['password'], $get['password'])) throw new Exception ('Senha incorreta');
                 $token = AuthController::storeToken($get);
             }
-            header("Refresh: 0");
-            return json_encode($token);
+            return json_encode(['message' => $token]);
         }catch(Exception $e) {
             http_response_code(401);
-            return json_encode($e->getMessage());
+            echo json_encode(['message' => $e->getMessage()]);
         }
     }
     public function logout() {
         setcookie("token", "", time()-3600,);
         session_destroy();
-        header("Refresh: 0");
     }
 }

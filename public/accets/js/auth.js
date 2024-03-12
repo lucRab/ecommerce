@@ -9,7 +9,7 @@ if(!form) {
 form.addEventListener('submit', (event) => {
   event.preventDefault(); // Evita o envio padrão do formulário
   
-  const alert = document.querySelector('#alert');
+  let alert = document.getElementById('alert');
   // Obtém os dados do formulário
   const formData = new FormData(form);
   // Faz a requisição POST usando fetch()
@@ -21,13 +21,10 @@ form.addEventListener('submit', (event) => {
     if (response.ok) {
       window.location.replace('http://localhost:8000');
     }
-    if (response.status === 401) {
+    if (response.status === 401)  {
       return response.json().then(data => {
-        alert.innerText = data;
-        throw new Error(response.message);
+        alert.innerText = data.message;
       });
     }
-    return response.json();
   });
 });
-

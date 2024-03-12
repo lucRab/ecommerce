@@ -50,7 +50,7 @@
             </a>
           </div>
         </div>
-        <?php } else {?>
+        <?php } else { ?>
         <div class="navbar-item">
           <a href="http://localhost:8000/<?= $type?>/<?=$_SESSION['slug']?>">
             <figure class="image is-32x32 is-center mr-2">
@@ -60,9 +60,11 @@
             <div class="mr-2">
               <?= $_SESSION['name'] ?>
             </div>
-          <a href="http://localhost:8000/sale/<?= $_SESSION['slug']?>" class="button is-light">
-            Carrinho
-          </a>
+            <?php if ($type == 'user') { ?>
+              <a href="http://localhost:8000/sale/<?= $_SESSION['slug']?>" class="button is-light">
+                Carrinho
+              </a>
+            <?php } ?>
           <button class="button is-primary" id="btn">
             Log out
           </button>

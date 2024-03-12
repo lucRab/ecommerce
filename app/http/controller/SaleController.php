@@ -85,8 +85,8 @@ class SaleController {
             $get = $this->product->get();
             if($get[0]['disponivel'] == 1) {
                 $this->repository->itemPedido(['idproduto' => $get[0]['idproduto'],'idusuario' => intval($sale)]);
-                header('Location: http://localhost:8000/sale');
             }
+            header("Location: http://localhost:8000/");
         }catch(Exception $e) {
             return $e->getMessage();
         }

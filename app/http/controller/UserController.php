@@ -47,16 +47,9 @@ class UserController {
            
             http_response_code(401);
             if($e->getCode() == "23000") return json_encode("Esse email já estar registrado");
-            return json_encode($e->getMessage());
+            echo json_encode(['message' => $e->getMessage()]);
         }
     }
-    public function showcart (stdClass $request, $sale) {
-        $this->repository->get->where('slug','=', $sale);
-        $this->repository->get->column('iduser');
-        $get = $this->repository->get();
-        var_dump($get);
-        //return Plates::view('show/user', $get);
-     }
     public function show (stdClass $request, $user) {
        $this->repository->get->where('slug','=', $user);
        $get = $this->repository->get();
@@ -107,9 +100,5 @@ class UserController {
         }catch(Exception $e) {
             return $e->getMessage();
         }
-    }
-
-    public function teste($teste, $name = null) {
-       // var_dump($teste, $name, "aaaaa");
     }
 }

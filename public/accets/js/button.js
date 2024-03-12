@@ -41,11 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+  
   btn.addEventListener('click', () => {
     localStorage.removeItem('token');
 
     fetch('/logout',{
       method: 'POST'
+    }).then(response => {
+      if(response.ok) {
+        window.location.replace('http://localhost:8000');
+      }
     });
-    location.reload();
   });
