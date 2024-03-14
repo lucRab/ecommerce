@@ -28,11 +28,11 @@ if(gettype(AuthController::decodedToken($_COOKIE['token'])) == 'string') {
                                 <p class="mt-4 title is-size-6"> 
                                     O que você precisa saber sobre este produto
                                 </p>
-                                <li class="title is-size-6"> Microfone flexível incorporado.</li>
-                                <li class="title is-size-6"> O comprimento do cabo é de 3.5mm.</li>
-                                <li class="title is-size-6"> Som superior e ilimitado.</li>
-                                <li class="title is-size-6"> Confortávels e práticos.</li>
-                               
+                                <?php if (!empty($this->data['desc'])) {
+                                    foreach ($this->data['desc'] as $key => $value) {
+                                    ?>
+                                    <li class="title is-size-6"><?= $value['descricao']?></li>
+                                <?php }}?>
                             </div>
                             <div class="card is-shadowless">
                                 <a href="http://localhost:8000/sale" class="button is-primary mx-6 my-3">Comprar</a>

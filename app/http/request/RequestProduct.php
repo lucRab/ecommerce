@@ -49,4 +49,12 @@ class RequestProduct {
         return $result;
     }
 
+    static function descriptioRequest($request) {
+        $description = [];
+        $index = sizeof($request) - 5;
+        for ($i=0; $i < $index; $i++) { 
+            array_push($description, $request[$i]);
+        }
+        return $description;
+    }
 }

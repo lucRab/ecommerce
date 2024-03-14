@@ -31,7 +31,7 @@ abstract class Model {
     public function get() {
         //verifica  se não algum erro na conexão.
         if(gettype($this->conect) == "object") {
-           $quary = "SELECT ".$this->get->column." FROM ".$this->table.$this->get->param;
+           $quary = "SELECT ".$this->get->column." FROM ".$this->table.$this->get->join.$this->get->param;
            $get = $this->conect->prepare($quary);
            if($this->get->p_value != null) {
                 $get->execute($this->get->p_value);

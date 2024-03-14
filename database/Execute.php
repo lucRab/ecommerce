@@ -1,5 +1,6 @@
 <?php
 require "../vendor/autoload.php";
+require "Database.php";
 use Database\Database;
 
 //--------------------------------------------|| START ||----------------------------------------------//
@@ -21,3 +22,7 @@ use Database\Database;
 //  Database::drop();
 //  Database::dropAll();
 //---------------------------------------------------------------------------------------------------//
+    
+    Database::$table->int('idproduto');
+    Database::$table->string('descricao');
+    Database::create('descricao');

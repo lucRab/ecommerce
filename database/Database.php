@@ -15,10 +15,14 @@ class Database {
     public static function create ( string $table, array $column = null) {
         if (gettype(self::$conect) == "object") {
             $column = self::$table->column;
-            if(is_null($column['id'])) die('Falta da coluna id');
-            
-            $quary = " CREATE TABLE ".$table." ( ".$column['id']['name'].' '.$column['id']['type'].' '.$column['id']['constraint'].',';
-            $t = sizeof($column) - 1;
+            if(array_key_exists('id',$column)){
+                $quary = " CREATE TABLE ".$table." ( ".$column['id']['name'].' '.$column['id']['type'].' '.$column['id']['constraint'].',';
+                $t = sizeof($column) - 1;
+            } else {
+                $quary = "CREATE TABLE ".$table." (";
+                $t = sizeof($column);
+            } 
+
             for ($i = 0; $i < $t; $i++) { 
                 $quary = $quary.' '.$column[$i]['name'].' '.$column[$i]['type'].' '.$column[$i]['constraint'];
                 if($i != $t - 1 && $t > 1) {
@@ -26,7 +30,7 @@ class Database {
                 }
             }
             $quary = $quary.')';
-            self::$conect->exec($quary);
+             self::$conect->exec($quary);
             return true;
         }
         return self::$conect;//retorna o erro caso haja.

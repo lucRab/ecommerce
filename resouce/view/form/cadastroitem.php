@@ -17,7 +17,7 @@
             </div>
             <form action="" method="post" enctype="multipart/form-data" class="form-cadastro" id="form1">
               <input type="hidden" name="id" value="<?=$_SESSION['id']?>">
-                <div class="field is-horizontal">
+              <div class="field is-horizontal">
                     <div class="field-label is-normal">
                       <label class="label">Nome</label>
                     </div>
@@ -72,19 +72,40 @@
                     </div>
                   </div>
                 </div>
+                
+                <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                    <label class="label">Pontos importantes do produto</label>
+                  </div>
+              
+                  <div id="21">
+                  </div>
+                </div>
 
                 <div class="field is-horizontal">
                   <div class="field-label">
-                    <!-- Left empty for spacing -->
                   </div>
                   <div class="field-body">
                     <div class="field">
-                        <div class="control has-text-centered">
+                      <div class="control has-text-centered">
                             <button type="submit" class="button is-black is-outlined">Enviar</button>
                         </div>
                     </div>
                   </div>
                 </div>
+            </form>
+            <form action="" id="form2">  
+              <div class="field-body">
+                <div class="field">
+                  <div class="field-label is-normal">
+                    <label class="label"> Adicionar Pontos importantes</label>
+                  </div>
+                  <div class="control">
+                    <input type="text" id="descricao11" >
+                    <button class="button">ADD</button>
+                  </div>
+                </div>
+              </div>
             </form>
             <div id="alert" name="alert" class="has-text-danger has-text-centered"></div>
         </div>

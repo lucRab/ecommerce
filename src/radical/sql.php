@@ -29,7 +29,7 @@ class sql
         $this->value = $value;
     }
 
-    public function column(string $columns) {
+    public function column($columns) {
         $this->column = $columns;
     }
 }

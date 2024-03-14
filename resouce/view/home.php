@@ -3,7 +3,6 @@
 <div class="column"></div>
 <div class="container is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd m-5">
     <div class="columns">
-
         <div class="column is-half">
           <a href="http://localhost:8000/product/<?= $this->data[array_key_last($this->data)]['slug']?>">
           <figure class="image">
@@ -11,11 +10,8 @@
           </figure>
           </a>
         </div>
-
-
         <div class="has-background-primary" >
           <div class="columns">
-
             <div class="column text-center is-shadowless">
               <div class="box m-5">
                 <div class="card-image m-2">
@@ -29,7 +25,6 @@
                   <?= $this->data[array_key_last($this->data) - 1]['name']?>
                 </div>
               </div>
-
               <div class="box m-5">
                 <div class="card-image m-2">
                 <a href="http://localhost:8000/product/<?= $this->data[array_key_last($this->data) - 2]['slug']?>">
@@ -42,12 +37,8 @@
                   <?= $this->data[array_key_last($this->data) - 2]['name']?>
                 </div>
               </div>
-
             </div>
-
-
             <div class="column text-center">
-
               <div class="box m-5">
                 <div class="card-image m-2">
                 <a href="http://localhost:8000/product/<?= $this->data[array_key_last($this->data) - 3]['slug']?>">
@@ -60,7 +51,6 @@
                   <?= $this->data[array_key_last($this->data) - 3]['name']?>
                 </div>
               </div>
-
               <div class="box m-5">
                 <div class="card-image m-2">
                 <a href="http://localhost:8000/product/<?= $this->data[array_key_last($this->data)- 4]['slug']?>">
@@ -78,28 +68,21 @@
         </div>
     </div>
 </div>
-
-
 <div class="has-background-grey-lighter ">
   <div class="container">
     <div class="columns">
-
       <div class="column">
         <div class="box">
           <a href="http://localhost:8000/store">Lojas</a>
         </div>
       </div>
-
       <div class="column">
         <div class="box"></div>
       </div>
-
       <div class="column">
         <div class="box">Categorias</div>
       </div>
-
     </div>
-
     <div class="columns">
       <div class="cont">
         <?php for ($i=0; $i < 10; $i++) {?>
