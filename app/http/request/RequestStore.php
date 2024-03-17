@@ -35,9 +35,8 @@ class RequestStore {
     static function updateRequest(stdClass $param) {
 
         if(strlen($param->name) < 3) throw new \Exception("O campo nome deve ter pelo menos 3 caracteres!", 2);
-        if(strlen($param->password) < 3) throw new \Exception("O campo senha deve ter pelo menos 3 caracteres!", 2);
 
-        $result = [ 'name' => $param->name, 'email' => $param->email, 'password' => $param->password, 'id' => $param->id, 'descricao' => $param->descricao, 'tell' => $param->tell];
+        $result = [ 'name' => $param->name, 'email' => $param->email,  'id' => $param->id, 'descricao' => $param->descricao, 'tell' => $param->tell];
         return $result;
     }
     /**

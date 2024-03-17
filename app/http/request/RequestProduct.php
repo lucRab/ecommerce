@@ -38,17 +38,6 @@ class RequestProduct {
         $result = ['name'=> $param->name, 'preco' => $param->preco, 'quantidade' => $param->quantidade];
         return $result;
     }
-    /**
-     * Métodos responsavel por definir a requisição na deleção de um usuário
-     *
-     * @param stdClass $param - dados enviados
-     * @return array
-     */
-    static function destroyRequest(stdClass $param ) {
-        $result = [ 'id' => $param->id];
-        return $result;
-    }
-
     static function descriptioRequest($request) {
         $description = [];
         $index = sizeof($request) - 5;

@@ -58,8 +58,17 @@ class StoreController {
             $param = RequestStore::updateRequest($request);
             $this->repository->update($param);
         }catch(Exception $e) {
-            return $e->getMessage();
+            echo json_encode(['message' => $e->getMessage()]);
         }
+    }
+    /**
+     * Método responsavel pela view de edição
+     */
+    public function edit($request, $edit){
+        $this->repository->get->column('name, email, descricao, tell');
+        $this->repository->get->where('slug', '=', $edit);
+        $get = $this->repository->get();
+        Plates::view('form/loja', $get);
     }
     /**
      * Método resposavel pela exibição de uma loja especifica

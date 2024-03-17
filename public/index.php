@@ -23,9 +23,11 @@ use src\Route;
  Route::route('/store', 'POST', 'StoreController:store');
  Route::route('/store/update', 'POST', 'StoreController:pdate');
  Route::route('/store/delete', 'POST', 'StoreController:delete');
+ Route::route('/store/edit', 'POST', 'StoreController:update');
  Route::route('/store','GET','StoreController:index');
  Route::route('/store/{any}', 'GET', 'StoreController:show');
  Route::route('/store/cadastro', 'GET', 'LoadPages:CadastroLojaPage');
+ Route::route('/store/edit/{any}', 'GET', 'StoreController:edit');
 
  Route::route('/sale', 'POST', 'SaleController:store');
  Route::route('/sale/update', 'POST', 'SaleController:update');
@@ -36,7 +38,7 @@ use src\Route;
 
  Route::route('/product', 'POST', 'ProductController:store');
  Route::route('/product/update', 'POST', 'ProductController:update');
- Route::route('/product/delete', 'POST', 'ProductController:delete');
+ Route::route('/product/delete/{any}', 'POST', 'ProductController:destroy');
  Route::route('/product', 'GET', 'LoadPages:ProdutoPage');
  Route::route('/product/{any}', 'GET', 'ProductController:show');
  Route::route('/product/cadastro', 'GET','ProductController:create');

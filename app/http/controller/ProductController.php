@@ -25,7 +25,9 @@ class ProductController {
         $this->repository = new Product();
         $this->descricao = new Descricao();
     }
-
+    /**
+     * Método index
+     */
     public function index () {
         try {
             $this->repository->get->all();
@@ -66,26 +68,32 @@ class ProductController {
             echo json_encode(['message' => $e->getMessage()]);
         }
     }
+    /**
+     * Método responsavel tela de visualização de um produto
+     */
     public function  show(stdClass $request, $product) {
-        $columns = 'produto.name, '.
-                    'produto.descricao, '.
-                    'produto.foto, '.
-                    'produto.preco, '.
-                    'produto.quantidade, '.
-                    'produto.idloja, '.
-                    'produto.slug, '.
-                    'produto.idproduto ';
-        $this->repository->get->column($columns);
-        $this->repository->get->where('slug','= ',$product);
-        $get = $this->repository->get();
-        $this->descricao->get->column('descricao');
-        $this->descricao->get->where('idproduto', '=', $get[0]['idproduto']);
-        $descricao = $this->descricao->get();
-        if(!empty($descricao)) {
-            $get['desc'] = $descricao;
-        }
-        return Plates::view('show/produto', $get);
+            $columns = 'produto.name, '.
+            'produto.descricao, '.
+            'produto.foto, '.
+            'produto.preco, '.
+            'produto.quantidade, '.
+            'produto.idloja, '.
+            'produto.slug, '.
+            'produto.idproduto ';
+            $this->repository->get->column($columns);
+            $this->repository->get->where('slug','= ',$product);
+            $get = $this->repository->get();
+            $this->descricao->get->column('descricao');
+            $this->descricao->get->where('idproduto', '=', $get[0]['idproduto']);
+            $descricao = $this->descricao->get();
+            if(!empty($descricao)) {
+                $get['desc'] = $descricao;
+            }
+            return Plates::view('show/produto', $get); 
     }
+    /**
+     * Método responsavel pela tela de criação de produto
+     */
     public function create() {
         return Plates::view('form/cadastroitem');
     }
@@ -103,12 +111,7 @@ class ProductController {
     /**
      * Método resposavel pela deleção de usuário
      */
-    public function destroy(stdClass $request) {
-        try{
-            $param = RequestProduct::destroyRequest($request);
-            $this->repository->update($param);
-        }catch(Exception $e) {
-            return $e->getMessage();
-        }
+    public function destroy(stdClass $request, $delete) {
+        $this->repository->delete(['id' => (int) $delete]);
     }
 }

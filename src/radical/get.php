@@ -17,8 +17,5 @@
         $this->values = "*";
         $this->param = null;
     }
-    public function join(string $jointable,string $idjointable) {
-        $this->join = " INNER JOIN ".$jointable." ON ".$this->table.'.'.$idjointable." = ".$jointable.'.'.$idjointable.' ';
-    }
  }
  

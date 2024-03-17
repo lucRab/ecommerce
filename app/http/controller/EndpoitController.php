@@ -18,17 +18,20 @@ class EndpoitController {
         
         $this->store = new Store();
      }
+    /**
+     * Método responsavel pelo Login do usuario
+     */
     public function login(stdClass $request) {
         try{
+            //inicia a sessão
             session_start();
-            if($this->user->getLogin(['email' =>$request->email])){
-                $param = RequestUser::loginRequest($request);
+            $param = RequestUser::loginRequest($request);
+            if($this->user->getLogin(['email' => $param['email']])){
                 $get = $this->user->Login(['email' => $param['email']]);
                 if(gettype($get) != "array") throw new Exception($get);
                 if(!password_verify($param['password'], $get['password'])) throw new Exception ('Senha incorreta');
                 $token = AuthController::userToken($get);
-            }else if($this->store->getLogin(['email' =>$request->email])) {
-                $param = RequestStore::loginRequest($request);
+            }else if($this->store->getLogin(['email' => $param['email']])) {
                 $get = $this->store->Login(['email' => $param['email']]);
                 if(!password_verify($param['password'], $get['password'])) throw new Exception ('Senha incorreta');
                 $token = AuthController::storeToken($get);
@@ -39,6 +42,9 @@ class EndpoitController {
             echo json_encode(['message' => $e->getMessage()]);
         }
     }
+    /**
+     * Métpdp responsavel pelo Logout do usuario
+     */
     public function logout() {
         setcookie("token", "", time()-3600,);
         session_destroy();

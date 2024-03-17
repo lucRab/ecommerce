@@ -47,9 +47,15 @@ if(gettype(AuthController::decodedToken($_COOKIE['token'])) == 'string') {
                             </p>
                             <?= $this->data[0]["descricao"]?>  
                         </div>
+                        <?php if($_SESSION ['id'] == $this->data[0]['idloja']) {?>
+                            <form action="http://localhost:8000/product/delete/<?= $this->data[0]['idproduto']?>" name="<?= $this->data[0]['idproduto']?>" method="POST" id="delete">
+                                <button  class="button">DELETAR</button> 
+                            </form>
+                        <?php }?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script type="module" src="../../accets/js/produto.js"></script>

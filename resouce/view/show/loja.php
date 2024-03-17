@@ -19,7 +19,7 @@ use App\http\controller\AuthController;
         </div>
     </div>
     <?php if($this->data['idloja'] == $_SESSION['id']) {?>
-        <a>Editar</a>
+        <a href="http://localhost:8000/store/edit/<?= $this->data['slug']?>">Editar</a>
     <?php } ?>
 </div>
 <div class="column has-background-grey-lighter" >

@@ -1,6 +1,6 @@
 // Seleciona o formulário
 
-let destino = '/user/edit';
+let destino = '/store/edit';
 let form = document.getElementById('form1');
 
 // Manipula o evento de envio do formulário
@@ -17,7 +17,6 @@ form.addEventListener('submit', (event) => {
   })
   .then(response => {
     if (response.ok) {
-      window.location.replace('http://localhost:8000');
     }
     if (response.status === 401)  {
       return response.json().then(data => {

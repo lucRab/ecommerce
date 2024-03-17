@@ -77,7 +77,9 @@ class SaleController {
             return $e->getMessage();
         }
     }
-    
+    /**
+     * Método responsavel por adicionar um item ao carrinho
+     */
     public function addproduct(stdClass $param, $sale, $product) {
         try{
             $this->product->get->column('disponivel, idproduto');
@@ -91,6 +93,9 @@ class SaleController {
             return $e->getMessage();
         }
     }
+    /**
+     * Método responsavel pela view de visualização do carrinho
+     */
     public function showcart (stdClass $request, $sale) {
         $this->user->get->where('slug','=', $sale);
         $this->user->get->column('iduser');
@@ -99,6 +104,9 @@ class SaleController {
         $cart = $this->repository->getCart($get[0]);
         return Plates::view('compra', $cart);
     }
+    /**
+     * Método responsavel por remover o item do carrinho
+     */
     public function removeItemCart ($request, $user, $product) {
         try {
             $this->user->get->where('slug','=', $user);

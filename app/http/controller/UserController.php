@@ -50,6 +50,9 @@ class UserController {
             echo json_encode(['message' => $e->getMessage()]);
         }
     }
+    /**
+     * Método responsavel pela visualização do usuario
+     */
     public function show (stdClass $request, $user) {
        $this->repository->get->where('slug','=', $user);
        $get = $this->repository->get();
@@ -81,22 +84,6 @@ class UserController {
         try{
             $param = RequestUser::destroyRequest($request);
             $this->repository->update($param);
-        }catch(Exception $e) {
-            return $e->getMessage();
-        }
-    }
-    
-    public function addProductCart(stdClass $request) {
-        try {
-            $this->repository->addCart(['idusuario' => $request->iduser, 'idproduto' => $request->idproduct]);
-        }catch(Exception $e) {
-            return $e->getMessage();
-        }
-    }
-
-    public function removeProductCart(stdClass $request) {
-        try {
-            $this->repository->remove(['idcarrinho' => $request->idcart]);
         }catch(Exception $e) {
             return $e->getMessage();
         }
