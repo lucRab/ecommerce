@@ -4,7 +4,10 @@
 <div class="container is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd m-5">
     <div class="columns">
         <div class="column is-half">
-          <a href="http://localhost:8000/product/<?= $this->data[array_key_last($this->data)]['slug']?>">
+          <a href="<?php if(isset($_COOKIE['token'])) {?>http://localhost:8000/product/
+          <?= $this->data[array_key_last($this->data)]['slug']; }else {
+            echo "http://localhost:8000/login"; }?>
+          ">
           <figure class="image">
             <img src="<?= $this->data[array_key_last($this->data)]['foto']?>">
           </figure>
@@ -15,7 +18,9 @@
             <div class="column text-center is-shadowless">
               <div class="box m-5">
                 <div class="card-image m-2">
-                <a href="http://localhost:8000/product/<?= $this->data[array_key_last($this->data) - 1]['slug']?>">
+                <a href="<?php if(isset($_COOKIE['token'])) {?>http://localhost:8000/product/
+                  <?= $this->data[array_key_last($this->data) - 1]['slug']; }else {
+                echo "http://localhost:8000/login"; }?>">
                   <figure class="image is-96x96 ml-5" >
                     <img src="<?= $this->data[array_key_last($this->data) - 1]['foto']?>">
                   </figure>
@@ -27,7 +32,9 @@
               </div>
               <div class="box m-5">
                 <div class="card-image m-2">
-                <a href="http://localhost:8000/product/<?= $this->data[array_key_last($this->data) - 2]['slug']?>">
+                <a href="<?php if(isset($_COOKIE['token'])) {?>http://localhost:8000/product/
+                <?= $this->data[array_key_last($this->data) - 2]['slug']; }else {
+                echo "http://localhost:8000/login"; }?>">
                   <figure class="image is-96x96 ml-5">
                     <img src="<?= $this->data[array_key_last($this->data) - 2]['foto']?>">
                   </figure>
@@ -41,7 +48,9 @@
             <div class="column text-center">
               <div class="box m-5">
                 <div class="card-image m-2">
-                <a href="http://localhost:8000/product/<?= $this->data[array_key_last($this->data) - 3]['slug']?>">
+                <a href="<?php if(isset($_COOKIE['token'])) {?>http://localhost:8000/product/
+                <?= $this->data[array_key_last($this->data) - 3]['slug']; }else {
+                echo "http://localhost:8000/login"; }?>">
                   <figure class="image is-96x96 ml-5">
                     <img src="<?= $this->data[array_key_last($this->data) - 3]['foto']?>"">
                   </figure>
@@ -53,7 +62,9 @@
               </div>
               <div class="box m-5">
                 <div class="card-image m-2">
-                <a href="http://localhost:8000/product/<?= $this->data[array_key_last($this->data)- 4]['slug']?>">
+                <a href="<?php if(isset($_COOKIE['token'])) {?>http://localhost:8000/product/
+                <?= $this->data[array_key_last($this->data) - 4]['slug']; }else {
+                echo "http://localhost:8000/login"; }?>">
                   <figure class="image is-96x96 ml-5">
                     <img src="<?= $this->data[array_key_last($this->data) - 4]['foto']?>">
                   </figure>
@@ -72,15 +83,11 @@
   <div class="container">
     <div class="columns">
       <div class="column">
-        <div class="box">
-          <a href="http://localhost:8000/store">Lojas</a>
-        </div>
-      </div>
-      <div class="column">
-        <div class="box"></div>
-      </div>
-      <div class="column">
-        <div class="box">Categorias</div>
+        <a href="http://localhost:8000/store">
+          <div class="box">
+            Lojas
+          </div>
+        </a>
       </div>
     </div>
     <div class="columns">
@@ -88,7 +95,9 @@
         <?php for ($i=0; $i < 10; $i++) {?>
           <?php if(!empty($this->data[array_key_last($this->data) - ($i + 5)])) {?>
             <div class="column is-one-fifth">
-              <a href="http://localhost:8000/product/<?= $this->data[array_key_last($this->data) - ($i + 5)]['slug']?>">
+              <a href="<?php if(isset($_COOKIE['token'])) {?>
+                http://localhost:8000/product/<?= $this->data[array_key_last($this->data) - ($i + 5)]['slug']; }else {
+                echo "http://localhost:8000/login"; }?>">
                 <div class="box">
                   <div class="card-image m-2">
                     <figure class="image is-96x96 ml-5">

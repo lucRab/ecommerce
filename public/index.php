@@ -1,7 +1,9 @@
 <?php
+//autoload
 require_once "../vendor/autoload.php";
-require "../src/Route.php";
 use src\Route;
+
+//Definindo as rotas
  Route::route('/', 'GET', 'ProductController:index');
 
  Route::route('/teste', 'GET', 'LoadPages:Testepage');
@@ -42,5 +44,6 @@ use src\Route;
  Route::route('/product', 'GET', 'LoadPages:ProdutoPage');
  Route::route('/product/{any}', 'GET', 'ProductController:show');
  Route::route('/product/cadastro', 'GET','ProductController:create');
- 
+
+//Inicia o sistemas de rotas
  Route::start();

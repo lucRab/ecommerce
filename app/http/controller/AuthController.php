@@ -4,18 +4,25 @@ use Dotenv\Dotenv;
 use Exception;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
-            
-
+/**
+ * Classe de autorização de usuario
+ */            
 class AuthController {
     
     static private function loadEnv() {
         $dotenv = Dotenv::createImmutable(dirname(__FILE__,4));
         $dotenv->load();
     }
+    /**
+     * Método para cria o token do usuario
+     *
+     * @param array $data dados do usuario
+     * @return string token do usuario
+     */
     static public function userToken(array $data) {
         self::loadEnv();
         $payload = [
-            'exp' => time() + 1000,
+            'exp' => time() + 100000000,
             'iat' => time(),
             'name' => $data['name'],
             'slug' => $data['slug'],
@@ -25,13 +32,19 @@ class AuthController {
 
         
         $encode = JWT::encode($payload, $_ENV['KEY'],'HS256');
-        setcookie('token', $encode, time() + 1000000,);
+        setcookie('token', $encode, time() + 100000000000,);
         return $encode;
     }
+    /**
+     * Método para cria o token da loja
+     *
+     * @param array $data dados da loja
+     * @return string token da loja
+     */
      static public function storeToken(array $data) {
         self::loadEnv();
         $payload = [
-            'exp' => time() + 1000,
+            'exp' => time() + 100000000,
             'iat' => time(),
             'name' => $data['name'],
             'slug' => $data['slug'],
@@ -41,9 +54,14 @@ class AuthController {
 
         
         $encode = JWT::encode($payload,$_ENV['KEY'],'HS256');
-        setcookie('token', $encode, time() + 1000000,);
+        setcookie('token', $encode, time() + 100000000000,);
         return $encode; 
     }
+    /**
+     * Método para decodificar o token
+     *
+     * @param string $token token a ser docodificado
+     */
     static public function decodedToken($token) {
         self::loadEnv();
         try {  

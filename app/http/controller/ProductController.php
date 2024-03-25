@@ -15,7 +15,7 @@ use stdClass;
  * Classe responsavel pelo controle do usuário
  */
 class ProductController {
-    
+    //variaveis
     protected Product $repository;
     protected Descricao $descricao;
    /**

@@ -123,8 +123,7 @@ class User extends Model{
         return $this->conect;//retorna o erro caso haja.
     }
     
-    public function remove(array $param) {
-        
+    public function remove(array $param) {  
         //verifica  se não algum erro na conexão.
         if(gettype($this->conect) == "object") {
             //perarando o sql a ser executado

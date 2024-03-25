@@ -55,8 +55,13 @@ class Route {
             echo $e->getMessage();
         }
     }
-
-    public static function verificate($method) {
+    /**
+     * Método para verificar os parametros passados pela rota
+     *
+     * @param string $method tipo da requisição da rota
+     * @return string retorna o tipo do parametro passado na rota
+     */
+    private static function verificate(string $method) {
         $routeFoud = null;
         foreach (self::allroutes($method) as $rout) {
             if(str_contains($rout, '{numeric}')) {
@@ -78,8 +83,13 @@ class Route {
         }
         return $routeFoud;
     }
-
-    public static function allroutes($method) {
+    /**
+     * Método que retorna todas as rotas cadastradas de um tipo especifico
+     *
+     * @param string $method tipo da requisição da rota
+     * @return array retorna um array com todas as rotas com o tipo de requisição passada
+     */
+    public static function allroutes(string $method) {
         $routes = [];
         if($method == "GET") {
             foreach (self::$routes['GET'] as $key => $value) {
@@ -93,8 +103,15 @@ class Route {
         }
         return $routes;
     }
-
-    public static function getKeyRoute(string $route, string $method, string $foud = null) {
+    /**
+     * Método que retorna a key do array das rotas
+     *
+     * @param string $route a rota que será verificada
+     * @param string $method o metodo da requisição da rota
+     * @param string|null $foud tipo do parametro passado na rota
+     * @return string retorna a key que estar no array das rotas
+     */
+    private static function getKeyRoute(string $route, string $method, string $foud = null) {
         if(isset($foud)) {
             if(str_contains($foud, '[0-9]+')){
                 $route = str_replace('[0-9]+', '{numeric}', $foud);
@@ -115,8 +132,12 @@ class Route {
         }
         return $result;
     }
-
-    public static function routeParam($routeFoud) {
+    /**
+     * Método que retorna os parametros passado na rota
+     *
+     * @param [type] $routeFoud
+     */
+    private static function routeParam($routeFoud) {
         if(isset($routeFoud)) {
             $params = [];
             $explodUri = explode('/', ltrim($_SERVER['REQUEST_URI'], '/'));
@@ -128,31 +149,38 @@ class Route {
             return $params;
         }
     }
-
+    /**
+     * Método que inicia o sistema de rotas
+     *
+     * @return void
+     */
     public static function start() {
         try {
-            $method = $_SERVER['REQUEST_METHOD'];
+            $method = $_SERVER['REQUEST_METHOD']; //Pega o tipo de requisição
             
-            $routeFoud = self::verificate($method);
+            $routeFoud = self::verificate($method); //verifica o tipo do parametro passado na rota
             $params = null;
-            if(isset($routeFoud))$params = self::routeParam($routeFoud);
+            if(isset($routeFoud))$params = self::routeParam($routeFoud);//pega os parametros passado na rota
             
-            $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-            $routes = self::allroutes($method);
-        
+            $uri = parse_url($_SERVER['REQUEST_URI'])['path'];//Pega a uri passado pelo usuario
+            $routes = self::allroutes($method);//pega todas as rotas definida com o tipo de requisição passada
+            //verifica se metodo estar cadastrado
             if(!isset(self::$routes[$method])){
                 throw new Exception("A metodo não exite");
             }
             
-            $key  = self::getKeyRoute($uri, $method, $routeFoud);
+            $key  = self::getKeyRoute($uri, $method, $routeFoud); //pega a key da rota para a verificação
+            //verifica se a rota estar cadastrada
             if(!array_key_exists($key, $routes)){
                 throw new Exception("A rota não exite"); 
             }
+            //cria a execução para o controller da rota
             if(isset($params)) {
                 $controller = fn() => self::load(self::$routes[$method][$key]['action'][0],self::$routes[$method][$key]['action'][1], $method, $params);
             }else{
                 $controller = fn() => self::load(self::$routes[$method][$key]['action'][0],self::$routes[$method][$key]['action'][1], $method);
             }
+            //executa o controller
             $controller();
          }catch(Exception $e) {
              echo $e->getMessage();
