@@ -45,5 +45,11 @@ use src\Route;
  Route::route('/product/{any}', 'GET', 'ProductController:show');
  Route::route('/product/cadastro', 'GET','ProductController:create');
 
+ Route::route('/endereco/{any}', 'GET', 'EnderecoController:index');
+ Route::route('/endereco/{any}/cadastro', 'GET', 'EnderecoController:create');
+ Route::route('/endereco/{any}/cadastro', 'POST', 'EnderecoController:store');
+ Route::route('/endereco/{any}/edit', 'POST', 'EnderecoController:edit');
+
+ Route::route('/oooops', 'GET', 'AuthController:error404page');
 //Inicia o sistemas de rotas
  Route::start();

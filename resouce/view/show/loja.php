@@ -8,7 +8,7 @@ use App\http\controller\AuthController;
     <div class="column">
         <div class="box" style="background-image: url('../<?= $this->data['imagem']?>'); background-position: center; ">
             <figure class="image is-128x128 is-center">
-                <img class="is-rounded" src="../accets/img/perfil.jpg">
+                <img class="is-rounded" src="../accets/img/icon/perfil.jpg">
             </figure>
         </div>
     </div>
@@ -31,8 +31,8 @@ use App\http\controller\AuthController;
                 <div class="column is-one-third">  
                     <a href="http://localhost:8000/product/<?= $this->data['produtos'][$i]['slug']?>">
                         <div class="box is-4" >
-                            <div class="card-image m-2">
-                                <figure class="image is-128x128 ml-6">
+                            <div class="card-image">
+                                <figure class="image is-center ml-6">
                                     <img src="../<?= $this->data['produtos'][$i]['foto']?>">
                                 </figure>
                             </div>

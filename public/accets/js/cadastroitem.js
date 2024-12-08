@@ -32,16 +32,16 @@ form.addEventListener('submit', (event) => {
     method: 'POST',
     body: formData
   })
-  // .then(response => {
-  //   if (response.ok) {
-  //     window.location.replace('http://localhost:8000');
-  //   }
-  //   if (response.status === 401)  {
-  //     return response.json().then(data => {
-  //       alert.innerText = data.message;
-  //     });
-  //   }
-  // });
+   .then(response => {
+     if (response.ok) {
+      alert.innerText = "PRODUTO ADICIONADO COM SUCESSO";
+     }
+     if (response.status === 401)  {
+       return response.json().then(data => {
+         alert.innerText = data.message;
+       });
+     }
+   });
 });
 
 

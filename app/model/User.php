@@ -19,11 +19,12 @@ class User extends Model{
         //verifica  se não algum erro na conexão.
         if(gettype($this->conect) == "object") {
             //perarando o sql a ser executado
-            $insert = $this->conect->prepare("INSERT INTO usuario(name, email, password, tell, cpf) VALUES(:name, :email, :password, :tell, :cpf)");
+            $insert = $this->conect->prepare("INSERT INTO usuario(name, email, password, tell, cpf, slug) VALUES(:name, :email, :password, :tell, :cpf, :slug)");
             //executa o sql e verifica se deu aldo de errado
             
             if($insert->execute($param)) {
                 $id = $this->conect->lastInsertId();
+                exit(var_dump($id));
                 return intval($id);
             } 
             

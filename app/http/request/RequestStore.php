@@ -21,9 +21,9 @@ class RequestStore {
         if(strlen($param->name) < 3) throw new \Exception("O campo nome deve ter pelo menos 3 caracteres!", 2);
         if(strlen($param->password) < 3) throw new \Exception("O campo senha deve ter pelo menos 3 caracteres!", 2);
         $slug = STR_RANDOM::slug($param->name);
-
+        if(empty($param->imagem)) $param->imagem = null;
         if(empty($param->descricao)) $param->descricao = null;
-        $result = ['name'=> $param->name, 'email'=> $param->email,'tell' => $param->tell,'descricao' => $param->descricao ,'password' =>password_hash($param->password, PASSWORD_BCRYPT), 'slug' => $slug];
+        $result = ['name'=> $param->name, 'email'=> $param->email,'tell' => $param->tell,'descricao' => $param->descricao ,'password' =>password_hash($param->password, PASSWORD_BCRYPT), 'slug' => $slug, 'imagem' => $param->imagem];
         return $result;
     }
     /**
@@ -33,10 +33,10 @@ class RequestStore {
      * @return array
      */
     static function updateRequest(stdClass $param) {
-
         if(strlen($param->name) < 3) throw new \Exception("O campo nome deve ter pelo menos 3 caracteres!", 2);
+        if(empty($param->imagem)) $param->imagem = null;
 
-        $result = [ 'name' => $param->name, 'email' => $param->email,  'id' => $param->id, 'descricao' => $param->descricao, 'tell' => $param->tell];
+        $result = [ 'name' => $param->name, 'email' => $param->email,'id' => $param->id, 'descricao' => $param->descricao, 'tell' => $param->tell, 'imagem' => $param->imagem];
         return $result;
     }
     /**

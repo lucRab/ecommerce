@@ -10,6 +10,7 @@ use App\model\Product;
 use src\Plates;
 use Exception;
 use stdClass;
+use src\File;
 /**
  * Classe responsavel pelo controle do usuário
  */
@@ -38,6 +39,7 @@ class StoreController {
     public function store(stdClass $request) {
         try{
             $param = RequestStore::createRequest($request);
+        
             $id = $this->repository->create($param);
             if(gettype($id) == "string") throw new Exception($id, "2002");
             $param += ['idloja' => strval($id)];
@@ -55,7 +57,12 @@ class StoreController {
      */
     public function update(stdClass $request) {
         try {
+            $request->imagem = $_FILES['imagem'];
             $param = RequestStore::updateRequest($request);
+            if($param['imagem'] != null) {
+                $dirFoto =  File::file($param['imagem'],'banner');
+                $param['imagem'] = $dirFoto;
+             }
             $this->repository->update($param);
         }catch(Exception $e) {
             echo json_encode(['message' => $e->getMessage()]);

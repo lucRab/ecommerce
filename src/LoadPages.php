@@ -14,7 +14,7 @@ class LoadPages {
      * Método para registar a view dos usuarios
      */
     public function UserPage() {
-       return Plates::view('user');
+       return Plates::view('show/user');
     }
     /**
      * Método para registrar a view de cadastro

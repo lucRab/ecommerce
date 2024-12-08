@@ -20,7 +20,7 @@ if($_SESSION['id'] != $this->data[0]['iduser']) header('Location: http://localho
                     </a>
                 </li>
                 <li class="list-group-item m-2">
-                    <a href="">
+                    <a href="http://localhost:8000/endereco/<?= $_SESSION['slug']?>">
                         Endereços
                     </a>
                 </li>

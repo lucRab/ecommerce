@@ -27,7 +27,7 @@
     <div class="navbar-brand">
       <a class="navbar-item" href="http://localhost:8000">
         <figure class="image">
-          <img src="http://localhost:8000/accets/img/logo.png" width="112" height="28">
+          <img src="http://localhost:8000/accets/img/icon/logo.png" width="112" height="28">
         </figure>
           ECOMMERCE
       </a>
@@ -54,7 +54,7 @@
         <div class="navbar-item">
           <a href="http://localhost:8000/<?= $type?>/<?=$_SESSION['slug']?>">
             <figure class="image is-32x32 is-center mr-2">
-              <img class="is-rounded" src="http://localhost:8000/accets/img/perfil.jpg">
+              <img class="is-rounded" src="http://localhost:8000/accets/img/icon/perfil.jpg">
             </figure>
           </a>
             <div class="mr-2">

@@ -29,6 +29,16 @@ AuthController::decodedToken($_COOKIE['token']);
                             <input type="text" class="input" name="tell" value="<?= $this->data[0]['tell']?>">
                         </div>
                     </div>
+                    <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Banner</label>
+                    </div>
+                    <div class="field-body">
+                      <div class="field">
+                        <input class="input" name="imagem" type="file">  
+                    </div>
+                    </div>
+                </div>
                     <div class="field">
                         <label class="label">Descrição</label>
                         <div class="control">

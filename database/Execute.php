@@ -23,6 +23,6 @@ use Database\Database;
 //  Database::dropAll();
 //---------------------------------------------------------------------------------------------------//
     
-    Database::$table->int('idproduto');
-    Database::$table->string('descricao');
-    Database::create('descricao');
+    // Database::$table->int('idproduto');
+    // Database::$table->string('descricao');
+    // Database::create('descricao');

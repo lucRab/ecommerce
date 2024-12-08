@@ -4,6 +4,7 @@ use Dotenv\Dotenv;
 use Exception;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use src\Plates;
 /**
  * Classe de autorização de usuario
  */            
@@ -78,5 +79,10 @@ class AuthController {
         }catch(Exception $e) {
             return $e->getMessage();
         }
+    }
+
+    public function error404page() {
+        
+        Plates::view('404page');
     }
 }

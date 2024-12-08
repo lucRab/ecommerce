@@ -17,6 +17,7 @@ form.addEventListener('submit', (event) => {
   })
   .then(response => {
     if (response.ok) {
+      alert.innerText = "ATUALIZADO COM SUCESSO";
     }
     if (response.status === 401)  {
       return response.json().then(data => {

@@ -5,7 +5,7 @@
         "psr-4": {
             "src\\": "src/",
             "App\\": "app/",
-            "Database": "database/"
+            "Database\\": "database/"
         }
     },
     "authors": [

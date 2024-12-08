@@ -168,11 +168,10 @@ class Route {
             if(!isset(self::$routes[$method])){
                 throw new Exception("A metodo não exite");
             }
-            
             $key  = self::getKeyRoute($uri, $method, $routeFoud); //pega a key da rota para a verificação
             //verifica se a rota estar cadastrada
             if(!array_key_exists($key, $routes)){
-                throw new Exception("A rota não exite"); 
+                header("Location:http://localhost:8000/oooops");
             }
             //cria a execução para o controller da rota
             if(isset($params)) {

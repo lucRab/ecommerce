@@ -33,12 +33,15 @@ class ProductController {
             $this->repository->get->all();
             $products = $this->repository->get();
             $allproduct = [];
-            foreach ($products as $key => $value) {
-                if($value['disponivel'] == 1 ) {
-                    array_push($allproduct, $value);
+            if(gettype($products) == "array") {
+
+                foreach ($products as $key => $value) {
+                    if($value['disponivel'] == 1 ) {
+                        array_push($allproduct, $value);
+                    }
                 }
             }
-            return Plates::view('home', $allproduct);
+                return Plates::view('home', $allproduct);
         } catch(Exception $e) {
             return $e->getMessage();
         }
@@ -94,7 +97,7 @@ class ProductController {
     /**
      * Método responsavel pela tela de criação de produto
      */
-    public function create() {
+    public function create(stdClass $request, $user) {
         return Plates::view('form/cadastroitem');
     }
     /**
